@@ -1,0 +1,15 @@
+* text=auto
+*.css linguist-vendored
+*.scss linguist-vendored
+*.js linguist-vendored
+CHANGELOG.md export-ignore
+
+# Faz com que arquivos binários não sofram alterações durante o versionamento
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.bmp binary
+*.gif binary
+*.mp4 binary
+*.webm binary
+*.mp3 binary
