@@ -1,0 +1,36 @@
+Para conseguir rodar o projeto você vai precisar seguir alguns passos.
+
+1 - Se você não tiver o Composer na sua maquina baixe e instale-o ( https://getcomposer.org/ ).
+
+2 - Faça um clone do projeto no bitbucket para a sua máquina local. ( git clone https://RobRosa@bitbucket.org/amamosweb2py/projetoweb2.git )
+
+3 - Pela linha de comando, vá até a pasta do projeto que você clonou.
+
+4 - Na linha de comando digite: composer install (isso vai baixar todas as dependências do projeto)
+
+5 - Espere pacientemente. Sério demora pra krl tu vai pensar que o pc travou mas não só espera. Faz um cafezinho enquanto isso...
+
+6 - Depois que todas as dependências forem baixadas pelo composer, vá até a pasta do projeto, crie uma cópia do arquivo .env.example e renomeie ela só pra .env (Nesse arquivo ficam as "variaveis globais" do teu projeto)
+
+7 - Crie uma chave identificadora pro teu projeto (é obrigatório). Digite na linha de comando: php artisan app:key generate
+
+8 - Abra o arquivo .env e veja se tem alguma coisa onde no campo APP_KEY= se sim pode continuar.
+
+9 - Por padrão o nome do teu projeto vai estar App ou Laravel. Tu pode mudar digitando na linha de comando: php artisan app:name nomeQueTuQuiser ( eu estou usando o nome projetoWeb2 , acho melhor colocar o mesmo pra não dar conflito )
+
+10 - Pra ver se tudo ta funcionando direitinho, tu pode rodar o comando: php artisan serve (isso vai disponibilizar o projeto pra ser acessado no navegador)
+
+11 - No navegador acesse a url: http://localhost:8000
+
+12 - Se aparecer a tela do laravel ta tudo OK! (PS: usando o "php artisan serve" o teu projeto nao vai estar rodando pelo XAMPP e sim por um servidor 'proprio' do laravel, tem como rodar pelo xampp, mas daí tem que fazer um VirtualHost e outras paradas. Por enquanto é mais fácil da maneira que fizemos)
+
+13 - Depois tu pode configurar no arquivo .env as configurações do banco de dados.
+Altere os valores desses campos para os que corresponderem na tua máquina (sem espaço depois do sinal de igual):
+DB_DATABASE=
+DB_USERNAME=
+DB_PASSWORD=
+Ainda não temos nada de banco, mas amanhã já começamos algo.
+
+=========================================================================================
+Acho que eras isso mano, agora podemos começar a desenvolver. Qualquer dúvida é só falar.
+=========================================================================================
