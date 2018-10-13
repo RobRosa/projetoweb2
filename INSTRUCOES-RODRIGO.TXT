@@ -12,7 +12,7 @@ Para conseguir rodar o projeto você vai precisar seguir alguns passos.
 
 6 - Depois que todas as dependências forem baixadas pelo composer, vá até a pasta do projeto, crie uma cópia do arquivo .env.example e renomeie ela só pra .env (Nesse arquivo ficam as "variaveis globais" do teu projeto)
 
-7 - Crie uma chave identificadora pro teu projeto (é obrigatório). Digite na linha de comando: php artisan app:key generate
+7 - Crie uma chave identificadora pro teu projeto (é obrigatório). Digite na linha de comando: php artisan key:generate
 
 8 - Abra o arquivo .env e veja se tem alguma coisa onde no campo APP_KEY= se sim pode continuar.
 
