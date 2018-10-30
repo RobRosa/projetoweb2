@@ -38,7 +38,11 @@ class ProductController extends Controller
     {
         $request->validate([
             'name'=>'required',
-            'description'=>'required'
+            'description'=>'required',
+            'brand'=>'required',
+            'color'=>'required',
+            'price'=>'required',
+            'amount'=>'required'
         ]);
 
         Product::create($request->all());
@@ -80,12 +84,20 @@ class ProductController extends Controller
     {
         $request->validate([
             'name'=>'required',
-            'description'=>'required'
+            'description'=>'required',
+            'brand'=>'required',
+            'color'=>'required',
+            'price'=>'required',
+            'amount'=>'required'
         ]);
 
         $product = Product::find($id);
         $product->name = $request->get('name');
         $product->description = $request->get('description');
+        $product->brand = $request->get('brand');
+        $product->color = $request->get('color');
+        $product->price = $request->get('price');
+        $product->amount = $request->get('amount');
         $product->save();
         return redirect()->route('product.index')->with('success', 'editou');
     }

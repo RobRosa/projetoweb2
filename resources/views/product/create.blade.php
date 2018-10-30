@@ -31,6 +31,22 @@
 					<textarea type="text" name="description" class="form-control" placeholder="Quero Playstation" rows="8" cols="80"></textarea>
 				</div>
 				<div class="col-md-12">
+					<label>Brand:</label>
+					<input type="text" name="brand" class="form-control" placeholder="Sony">
+				</div>
+				<div class="col-md-12">
+					<label>Color:</label>
+					<input type="text" name="color" class="form-control" placeholder="Black">
+				</div>
+				<div class="col-md-12">
+					<label>Price:</label>
+					<input type="text" name="price" class="form-control" placeholder="1200">
+				</div>
+				<div class="col-md-12">
+					<label>Amount:</label>
+					<input type="text" name="amount" class="form-control" placeholder="100">
+				</div>
+				<div class="col-md-12">
 					<input type="submit" value="Submit" class="btn btn-success">
 				</div>
 			</div>
