@@ -21,4 +21,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/perfil', 'PerfilController@index')->middleware('auth');
 
-Route::resource('product','ProductController')->middleware('auth');
+Route::resource('product','ProductController');
