@@ -68,6 +68,37 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="sexo" class="col-md-4 col-form-label text-md-right">{{ __('Sexo') }}</label>
+
+                            <div class="col-md-6">
+                                <div class="form-check form-check-inline col-form-label ">
+                                    <input id="sexo_m" type="radio" class="form-check-input" name="sexo" value="M" required checked>
+                                    <label for="sexo_m" class="form-check-label">Masculino</label>
+                                </div>
+                                <div class="form-check form-check-inline col-form-label ">
+                                    <input id="sexo_f" type="radio" class="form-check-input" name="sexo" value="F">
+                                    <label for="sexo_f" class="form-check-label">Feminino</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="telephone" class="col-md-4 col-form-label text-md-right">{{ __('Telefone') }}</label>
+                            <div class="col-md-2">
+                                <input id="ddd" type="text" class="form-control {{ $errors->has('ddd') ? ' is-invalid' : '' }}" name="ddd" required>
+                            </div>
+                            <div class="col-md-4">
+                                <input id="telephone" type="text" class="form-control {{ $errors->has('telephone') ? ' is-invalid' : '' }}" name="telephone" required>
+
+                                @if ($errors->has('telephone'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('telephone') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
@@ -91,7 +122,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-success btn-block">
                                     {{ __('Register') }}
                                 </button>
                             </div>
