@@ -7,6 +7,7 @@ use projetoWeb2\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\DB;
 
 class RegisterController extends Controller
 {
@@ -49,9 +50,14 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'name'              => 'required|string|max:255',
+            'email'             => 'required|string|email|max:255|unique:users',
+            'password'          => 'required|string|min:6|confirmed',
+            'cpf'               => 'required|string|digits:11|unique:users',
+            'data_nascimento'   => 'required|before:today|after:1900-01-01',
+            'sexo'              => 'required|string|min:1|max:1',
+            'ddd'               => 'required|string|max:3',
+            'telephone'         => 'required|string|min:8'
         ]);
     }
 
@@ -63,10 +69,22 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+        $user = User::create([
+            'name'              => $data['name'],
+            'email'             => $data['email'],
+            'cpf'               => $data['cpf'],
+            'data_nascimento'   => $data['data_nascimento'],
+            'password'          => Hash::make($data['password']),
+            'sexo'              => $data['sexo']
         ]);
+
+        // Modificar futuramente! Não acho que essa parte deveria ser feita aqui, mas por hora vai.
+        DB::table('telephones')->insert([
+            'ddd'       => $data['ddd'],
+            'telephone' => $data['telephone'],
+            'user_id'   => $user->id
+        ]);
+
+        return $user;
     }
 }
