@@ -1,9 +1,11 @@
 <?php
 
-namespace projetoWeb2\Http\Controllers;
+namespace projetoweb2\Http\Controllers;
 
 use Illuminate\Http\Request;
-use projetoWeb2\Product;
+use projetoweb2\Product;
+use projetoweb2\Cart;
+use Session;
 
 class ProductController extends Controller
 {
@@ -14,8 +16,26 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::latest()->paginate(5);
-        return view('product.index', compact('products'))->with('i', (request()->input('page',1) -1)*5);
+        $products = Product::latest()->paginate(8);
+        return view('product.index', compact('products'))->with('i', (request()->input('page',1) -1)*8);
+    }
+
+    /**
+     * Get product in the coockie
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function cart(Request $request, $id ) {
+        $product = Product::find($id);
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->add($product, $product->id);
+
+        $request->session()->put('cart', $cart);
+        dd($request->session()->get('cart'));
+        return redirect()->route('product.index');
     }
 
     /**
@@ -37,12 +57,12 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=>'required',
-            'description'=>'required',
-            'brand'=>'required',
-            'color'=>'required',
-            'price'=>'required',
-            'amount'=>'required'
+            'name'=>'required|string|max:30',
+            'description'=>'required|string|max:255',
+            'brand'=>'required|string|max:30',
+            'color'=>'required|string|max:15',
+            'price'=>'required|numeric',
+            'amount'=>'required|numeric'
         ]);
 
         Product::create($request->all());
@@ -83,12 +103,12 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name'=>'required',
-            'description'=>'required',
-            'brand'=>'required',
-            'color'=>'required',
-            'price'=>'required',
-            'amount'=>'required'
+            'name'=>'required|string|max:30',
+            'description'=>'required|string|max:255',
+            'brand'=>'required|string|max:30',
+            'color'=>'required|string|max:15',
+            'price'=>'required|numeric',
+            'amount'=>'required|numeric'
         ]);
 
         $product = Product::find($id);

@@ -1,6 +1,6 @@
 <?php
 
-namespace projetoWeb2\Http\Controllers;
+namespace projetoweb2\Http\Controllers;
 
 use Illuminate\Http\Request;
 

@@ -10,21 +10,17 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
+
+Route::get('/', 'ProductController@index');
+
+Route::get('/cart/{id}', [
+	'uses' 	=> 'ProductController@cart',
+	'as'	=> 'product.cart'
+]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/perfil', 'PerfilController@index')->middleware('auth');
 
 Route::resource('product','ProductController');
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-

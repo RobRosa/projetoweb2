@@ -1,6 +1,6 @@
 <?php
 
-namespace projetoWeb2\Providers;
+namespace projetoweb2\Providers;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
@@ -13,7 +13,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'projetoWeb2\Model' => 'projetoWeb2\Policies\ModelPolicy',
+        'projetoweb2\Model' => 'projetoweb2\Policies\ModelPolicy',
     ];
 
     /**

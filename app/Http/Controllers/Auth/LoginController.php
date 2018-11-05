@@ -1,8 +1,8 @@
 <?php
 
-namespace projetoWeb2\Http\Controllers\Auth;
+namespace projetoweb2\Http\Controllers\Auth;
 
-use projetoWeb2\Http\Controllers\Controller;
+use projetoweb2\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller

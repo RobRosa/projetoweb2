@@ -1,9 +1,9 @@
 <?php
 
-namespace projetoWeb2\Http\Controllers\Auth;
+namespace projetoweb2\Http\Controllers\Auth;
 
-use projetoWeb2\User;
-use projetoWeb2\Http\Controllers\Controller;
+use projetoweb2\User;
+use projetoweb2\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -65,7 +65,7 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \projetoWeb2\User
+     * @return \projetoweb2\User
      */
     protected function create(array $data)
     {
