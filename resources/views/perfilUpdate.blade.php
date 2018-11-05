@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3">
-            <div style="width: 100%; height: 250px; background: #ddd;">Foto de Perfil</div>
+            <div style="width: 100%; height: 250px; background: #222;">Foto de Perfil</div>
         </div>
         <div class="col-md-9">
             <table class="table table-bordered" style="width:auto;">
@@ -54,7 +54,7 @@
                 </tr>
                 <tr>
                     <td colspan="2" class="text-right">
-                        <button class="btn btn-primary">Atualizar Dados</button>
+                        <button type="submit" class="btn btn-success">Salvar</button>
                     </td>
                 </tr>
             </table>

@@ -35,6 +35,7 @@ Route::post('/checkout/validation', [
 ])->middleware('auth');
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home/update', 'HomeController@showUpdate')->name('editProfile');
 
 Route::get('/perfil', 'PerfilController@index')->middleware('auth');
 

@@ -29,4 +29,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function telephone(){
+        return $this->hasMany('projetoWeb2\Telephone');
+    }
+
+    public function address(){
+        return $this->has('projetoWeb2\Address');
+    }
 }
