@@ -27,25 +27,25 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function cart(Request $request, $id ) {
-        $product = Product::find($id);
+    public function setCart(Request $request, $id ) {
+        $products = Product::find($id);
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
-        $cart->add($product, $product->id);
+        $cart->add($products, $products->id);
 
         $request->session()->put('cart', $cart);
         $request->session()->get('cart');
         return redirect()->route('product.index');
     }
 
-    public function myCart() {
+    public function getCart() {
         if (!Session::has('cart')) {
             return view('product.cart');
         }
 
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
-        return view('product.cart', ['products' => $cart->items, 'totalPrice' => $cart->tPrice]);
+        return view('product.cart', ['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);
     }
 
     /**

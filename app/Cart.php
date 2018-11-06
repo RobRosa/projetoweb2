@@ -4,29 +4,29 @@ namespace projetoweb2;
 
 class Cart
 {
-    public $items 	= null;
-    public $tQty 	= 0;
-    public $tPrice 	= 0;
+    public $items = null;
+    public $totalQty = 0;
+    public $totalPrice = 0;
 
     public function __construct($oldCart) {
     	if ($oldCart) {
-    		$this->items 	= $oldCart->items;
-    		$this->tQty 	= $oldCart->tQty;
-    		$this->tPrice 	= $oldCart->tPrice;
+    		$this->items = $oldCart->items;
+    		$this->totalQty = $oldCart->totalQty;
+    		$this->totalPrice = $oldCart->totalPrice;
     	}
     }
 
     public function add($item, $id) {
-    	$cookiesItem = ['qty' => 0, 'price' => $item->price, 'item' => $item];
+    	$cookiesItem = ['amount' => 0, 'price' => $item->price, 'item' => $item];
     	if ($this->items) {
     		if (array_key_exists($id, $this->items)) {
-    			$cookiesItem = $this->item[$id];
+    			$cookiesItem = $this->items[$id];
     		}
     	}
-    	$cookiesItem['qty']++;
-    	$cookiesItem['price'] = $item->price * $cookiesItem['qty'];
-    	$this->item[$id] = $cookiesItem;
-    	$this->tQty++;
-    	$this->tPrice += $item->price;
+    	$cookiesItem['amount']++;
+    	$cookiesItem['price'] = $item->price * $cookiesItem['amount'];
+    	$this->items[$id] = $cookiesItem;
+    	$this->totalQty++;
+    	$this->totalPrice += $item->price;
     }
 }

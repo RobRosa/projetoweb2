@@ -41,7 +41,7 @@
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
                             <a href="{{ route('product.myCart') }}" class="nav-link">
-                                My Cart <span class="badge badge-primary">{{ Session::has('cart') ? Session::get('cart')->tQty : '' }}</span>
+                                My Cart <span class="badge badge-primary">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }}</span>
                             </a>
                         </li>
                         <!-- Authentication Links -->

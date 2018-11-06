@@ -12,18 +12,15 @@
 */
 Auth::routes();
 
-// Route::get('/', 'ProductController@index');
-Route::get('/', function(){
-	return view('welcome');
-});
+Route::get('/', 'ProductController@index');
 
 Route::get('/cart/{id}', [
-	'uses' 	=> 'ProductController@cart',
+	'uses' 	=> 'ProductController@setCart',
 	'as'	=> 'product.cart'
 ]);
 
 Route::get('/myCart', [
-	'uses'	=> 'ProductController@myCart',
+	'uses'	=> 'ProductController@getCart',
 	'as'	=> 'product.myCart'
 ]);
 

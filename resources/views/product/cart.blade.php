@@ -1,26 +1,30 @@
 @extends('layouts.app')
 
 @section('content')
-	@if(Session::has('cart'))
-		<div class="container">
+	<div class="container">
+		@if (Session::has('cart'))
 			<div class="col-md-6">
 				<ul class="list-group">
-					@foreach($products as row)
+					@foreach($products as $product)
 					<li class="list-group-item">
 						<p>Quantidade: 
-							<strong>{{ $row['qty'] }}</strong>
+							<strong>{{ $product['amount'] }}</strong>
 						</p>
 						<p>Nome: 
-							<strong>{{ $row['item']['title'] }}</strong>
+							<strong>{{ $product['item']['name'] }}</strong>
 						</p>
 						<p>Preço: 
-							<strong>{{ $row['price'] }}</strong>
+							<strong>{{ $product['price'] }}</strong>
 						</p>
 					</li>
+					@endforeach
 				</ul>
 			</div>
-		</div>
-	@else
-
-	@endif
+			<div class="col-md-6">
+				<strong>Total: {{ $totalPrice }}</strong>
+			</div>
+		@else
+			<h1>Nada</h1>
+		@endif
+	</div>
 @endsection
