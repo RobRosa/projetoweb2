@@ -12,11 +12,19 @@
 */
 Auth::routes();
 
-Route::get('/', 'ProductController@index');
+// Route::get('/', 'ProductController@index');
+Route::get('/', function(){
+	return view('welcome');
+});
 
 Route::get('/cart/{id}', [
 	'uses' 	=> 'ProductController@cart',
 	'as'	=> 'product.cart'
+]);
+
+Route::get('/myCart', [
+	'uses'	=> 'ProductController@myCart',
+	'as'	=> 'product.myCart'
 ]);
 
 Route::get('/home', 'HomeController@index')->name('home');

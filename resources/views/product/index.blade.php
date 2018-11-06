@@ -62,12 +62,14 @@
 		<div class="section-product">
 			@foreach ($products as $row)
 			<div class="card" style="width: 14rem;">
-				<img class="card-img-top" src="https://pbs.twimg.com/profile_images/717306100312383488/f38LU5Cu.jpg" alt="Card image cap">
+				<img class="card-img-top" src="https://pbs.twimg.com/profile_images/717306100312383488/f38LU5Cu.jpg" alt="Card image cap" style="height: 200px;">
 				<div class="card-body">
 					<h2 class="card-title-product">{{ $row->name }}</h2>
 					<p class="card-text">R$ {{ $row->price }}</p>
-					<a href="#" class="btn btn-success">Buy</a>
-					<a href="{{ route('product.cart', ['id' => $row->id]) }}" class="btn btn-dark">Cart</a>
+					<div class="button-group">
+						<a href="#" class="btn btn-success">Buy</a>
+						<a href="{{ route('product.cart', ['id' => $row->id]) }}" class="btn btn-dark">Cart</a>
+					</div>
 				</div>
 			</div>
 			@endforeach
