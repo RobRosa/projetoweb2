@@ -4,8 +4,6 @@ namespace projetoweb2\Http\Controllers;
 
 use Illuminate\Http\Request;
 use projetoweb2\Product;
-use projetoweb2\Cart;
-use Session;
 
 class ProductController extends Controller
 {
@@ -18,34 +16,6 @@ class ProductController extends Controller
     {
         $products = Product::latest()->paginate(8);
         return view('product.index', compact('products'))->with('i', (request()->input('page',1) -1)*8);
-    }
-
-    /**
-     * Get product in the coockie
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function setCart(Request $request, $id ) {
-        $products = Product::find($id);
-        $oldCart = Session::has('cart') ? Session::get('cart') : null;
-        $cart = new Cart($oldCart);
-        $cart->add($products, $products->id);
-
-        $request->session()->put('cart', $cart);
-        $request->session()->get('cart');
-        return redirect()->route('product.index');
-    }
-
-    public function getCart() {
-        if (!Session::has('cart')) {
-            return view('product.cart');
-        }
-
-        $oldCart = Session::get('cart');
-        $cart = new Cart($oldCart);
-        return view('product.cart', ['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);
     }
 
     /**

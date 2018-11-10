@@ -15,13 +15,13 @@ Auth::routes();
 Route::get('/', 'ProductController@index');
 
 Route::get('/cart/{id}', [
-	'uses' 	=> 'ProductController@setCart',
-	'as'	=> 'product.cart'
+	'uses' 	=> 'CartController@setCart',
+	'as'	=> 'cart.add'
 ]);
 
 Route::get('/myCart', [
-	'uses'	=> 'ProductController@getCart',
-	'as'	=> 'product.myCart'
+	'uses'	=> 'CartController@getCart',
+	'as'	=> 'cart.myCart'
 ]);
 
 Route::get('/home', 'HomeController@index')->name('home');
