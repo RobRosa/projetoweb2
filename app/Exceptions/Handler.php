@@ -1,6 +1,6 @@
 <?php
 
-namespace projetoWeb2\Exceptions;
+namespace projetoweb2\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;

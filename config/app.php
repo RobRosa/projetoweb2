@@ -154,11 +154,11 @@ return [
         /*
          * Application Service Providers...
          */
-        projetoWeb2\Providers\AppServiceProvider::class,
-        projetoWeb2\Providers\AuthServiceProvider::class,
-        // projetoWeb2\Providers\BroadcastServiceProvider::class,
-        projetoWeb2\Providers\EventServiceProvider::class,
-        projetoWeb2\Providers\RouteServiceProvider::class,
+        projetoweb2\Providers\AppServiceProvider::class,
+        projetoweb2\Providers\AuthServiceProvider::class,
+        // projetoweb2\Providers\BroadcastServiceProvider::class,
+        projetoweb2\Providers\EventServiceProvider::class,
+        projetoweb2\Providers\RouteServiceProvider::class,
 
     ],
 

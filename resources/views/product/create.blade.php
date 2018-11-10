@@ -23,28 +23,58 @@
 			@csrf
 			<div class="row">
 				<div class="col-md-12">
-					<label>Name:</label>
-					<input type="text" name="name" class="form-control" placeholder="Playstation">
+					<label>{{ __('Name') }}</label>
+					<input type="text" name="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="Playstation" autofocus>
+					@if ($errors->has('name'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('name') }}</strong>
+                        </span>
+                    @endif
 				</div>
 				<div class="col-md-12">
-					<label>Description:</label>
-					<textarea type="text" name="description" class="form-control" placeholder="Quero Playstation" rows="8" cols="80"></textarea>
+					<label>{{ __('Description') }}</label>
+					<textarea type="text" name="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" placeholder="Quero Playstation" rows="8" cols="80"></textarea>
+					@if ($errors->has('description'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('description') }}</strong>
+                        </span>
+                    @endif
 				</div>
 				<div class="col-md-12">
-					<label>Brand:</label>
-					<input type="text" name="brand" class="form-control" placeholder="Sony">
+					<label>{{ __('Brand') }}</label>
+					<input type="text" name="brand" class="form-control{{ $errors->has('brand') ? ' is-invalid' : '' }}" placeholder="Sony">
+					@if ($errors->has('brand'))
+						<span class="invalid-feedback" role="alert">
+							<strong>{{ $errors->first('brand') }}</strong>
+						</span>
+					@endif
 				</div>
 				<div class="col-md-12">
-					<label>Color:</label>
-					<input type="text" name="color" class="form-control" placeholder="Black">
+					<label>{{ __('Color') }}</label>
+					<input type="text" name="color" class="form-control{{ $errors->has('color') ? ' is-invalid' : '' }}" placeholder="Black">
+					@if ($errors->has('color'))
+						<span class="invalid-feedback" role="alert">
+							<strong>{{ $errors->first('color') }}</strong>
+						</span>
+					@endif
 				</div>
 				<div class="col-md-12">
-					<label>Price:</label>
-					<input type="text" name="price" class="form-control" placeholder="1200">
+					<label>{{ __('Price') }}</label>
+					<input type="text" name="price" class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}" placeholder="1200">
+					@if ($errors->has('price'))
+						<span class="invalid-feedback" role="alert">
+							<strong>{{ $errors->first('price') }}</strong>
+						</span>
+					@endif
 				</div>
 				<div class="col-md-12">
-					<label>Amount:</label>
-					<input type="text" name="amount" class="form-control" placeholder="100">
+					<label>Amount {{ __('Amount') }}</label>
+					<input type="text" name="amount" class="form-control{{ $errors->has('amount') ? ' is-invalid' : '' }}" placeholder="100">
+					@if ($errors->has('amount'))
+						<span class="invalid-feedback" role="alert">
+							<strong>{{ $errors->first('amount') }}</strong>
+						</span>
+					@endif
 				</div>
 				<div class="col-md-12">
 					<input type="submit" value="Submit" class="btn btn-success">

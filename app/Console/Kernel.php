@@ -1,6 +1,6 @@
 <?php
 
-namespace projetoWeb2\Console;
+namespace projetoweb2\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;

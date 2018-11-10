@@ -24,7 +24,7 @@
             "database/factories"
         ],
         "psr-4": {
-            "projetoWeb2\\": "app/"
+            "projetoweb2\\": "app/"
         }
     },
     "autoload-dev": {
