@@ -5,6 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
+				@if (Session::has('cart'))
             	<div class="card-header">
             		<div class="row">
 	            		<div class="col-md-8">
@@ -15,7 +16,6 @@
 	            		</div>
 	            	</div>
             	</div>
-				@if (Session::has('cart'))
             	<div class="card-body">
 					<div class="row">
 						<ul class="list-group">
@@ -37,13 +37,25 @@
 				</div>
 				<div class="card-footer">
 					<div class="row">
-						<a href="#comprou" class="btn btn-success" title="compre agora">Comprar Agora</a>
+						<a href="{{ route('checkout.index') }}" class="btn btn-success" title="compre agora">Comprar Agora</a>
 					</div>
 				</div>
 				@else
+				<div class="card-header">
+            		<div class="row">
+	            		<div class="col-md-12">
+	            			{{ __('Carrinho') }}
+	            		</div>
+	            	</div>
+            	</div>
             	<div class="card-body">
 					<div class="row">
-						<h1>Nada</h1>
+						<p>Você não tem nenhum produto adicionado no carrinho, clique no botão abaixo para voltar a comprar.</p>
+					</div>
+				</div>
+				<div class="card-footer">
+					<div class="row">
+						<a href="{{ route('product.index') }}" class="btn btn-success" title="voltar">Voltar</a>
 					</div>
 				</div>
 				@endif

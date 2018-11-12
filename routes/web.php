@@ -24,6 +24,11 @@ Route::get('/myCart', [
 	'as'	=> 'cart.myCart'
 ]);
 
+Route::get('/checkout', [
+	'uses' 	=> 'CheckoutController@getCheckout',
+	'as'	=> 'checkout.index'
+])->middleware('auth');
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/perfil', 'PerfilController@index')->middleware('auth');

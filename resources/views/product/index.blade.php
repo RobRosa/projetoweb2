@@ -67,7 +67,6 @@
 					<h2 class="card-title-product">{{ $row->name }}</h2>
 					<p class="card-text">R$ {{ $row->price }}</p>
 					<div class="button-group">
-						<a href="#" class="btn btn-success">Buy</a>
 						<a href="{{ route('cart.add', ['id' => $row->id]) }}" class="btn btn-dark">Cart</a>
 					</div>
 				</div>
