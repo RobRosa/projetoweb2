@@ -29,6 +29,11 @@ Route::get('/checkout', [
 	'as'	=> 'checkout.index'
 ])->middleware('auth');
 
+Route::post('/checkout/validation{id}', [
+	'uses'	=> 'CheckoutController@validationCheckout',
+	'as'	=> 'checkout.validation'
+])->middleware('auth');
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/perfil', 'PerfilController@index')->middleware('auth');

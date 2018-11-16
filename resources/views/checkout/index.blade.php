@@ -6,11 +6,11 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                	{{ __('Checkout') }}
+                	<h1>{{ __('Checkout') }}</h1>
 					<p>Total: <strong>{{ $total }}</strong></p>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('checkout') }}">
+                    <form method="POST" action="{{ route('checkout.validation', Auth::user()->id) }}">
                         @csrf
 
                         <div class="form-group row">
@@ -33,7 +33,7 @@
                             <label for="cvc" class="col-md-4 col-form-label text-md-right">{{ __('CVC') }}</label>
 
                             <div class="col-md-6">
-                                <input id="cvc" type="number" class="form-control" name="cvc" required>
+                                <input type="password" class="form-control" required>
                             </div>
                         </div>
 
@@ -41,15 +41,7 @@
                             <label for="date" class="col-md-4 col-form-label text-md-right">{{ __('Expiration date') }}</label>
 
                             <div class="col-md-6">
-                                <input id="date" type="number" class="form-control" name="date" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="date" class="col-md-4 col-form-label text-md-right">{{ __('Expiration date') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="date" type="number" class="form-control" name="date" required>
+                                <input id="date" type="text" class="form-control" name="expiration" required>
                             </div>
                         </div>
 
