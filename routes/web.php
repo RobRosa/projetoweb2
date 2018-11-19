@@ -29,7 +29,7 @@ Route::get('/checkout', [
 	'as'	=> 'checkout.index'
 ])->middleware('auth');
 
-Route::post('/checkout/validation{id}', [
+Route::post('/checkout/validation', [
 	'uses'	=> 'CheckoutController@validationCheckout',
 	'as'	=> 'checkout.validation'
 ])->middleware('auth');

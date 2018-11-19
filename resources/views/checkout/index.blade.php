@@ -10,14 +10,14 @@
 					<p>Total: <strong>{{ $total }}</strong></p>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('checkout.validation', Auth::user()->id) }}">
+                    <form method="POST" action="{{ route('checkout.validation') }}">
                         @csrf
 
                         <div class="form-group row">
                             <label for="name" class="col-sm-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" required autofocus>
+                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" required autofocus>
                             </div>
                         </div>
 
@@ -25,7 +25,7 @@
                             <label for="card" class="col-md-4 col-form-label text-md-right">{{ __('Card') }}</label>
 
                             <div class="col-md-6">
-                                <input id="card" type="number" class="form-control" name="card" required>
+                                <input id="card" type="number" class="form-control{{ $errors->has('card') ? ' is-invalid' : '' }}" name="card" required>
                             </div>
                         </div>
 
@@ -41,7 +41,7 @@
                             <label for="date" class="col-md-4 col-form-label text-md-right">{{ __('Expiration date') }}</label>
 
                             <div class="col-md-6">
-                                <input id="date" type="text" class="form-control" name="expiration" required>
+                                <input id="date" type="text" class="form-control{{ $errors->has('expiration') ? ' is-invalid' : '' }}" name="expiration" required>
                             </div>
                         </div>
 
