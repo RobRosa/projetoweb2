@@ -4,6 +4,8 @@ namespace projetoweb2\Http\Controllers;
 
 use Illuminate\Http\Request;
 use projetoweb2\Checkout;
+use projetoweb2\ItemSale;
+use projetoweb2\Sale;
 use projetoweb2\Cart;
 use Session;
 
@@ -25,7 +27,23 @@ class CheckoutController extends Controller
     		'card'=>'required|integer',
     		'expiration'=>'required|string|max:5'
     	]);
-    	Checkout::create($equest->all());
+    	Checkout::create($request->all());
+
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+
+        foreach ($cart as $row) {
+            // dd($row);
+            $sale = Sale::create([
+                'price_total' => $row[2]['price']
+            ]);
+            $itemSale = ItemSale::create([
+                'amount' => $row[2]['amount'],
+                'sale_id' => $sale->id,
+                'product_id' => $row[2]['item']['attributes']['id']
+            ]);
+        }
+
         Session::forget('cart');
     	return redirect()->route('product.index')->with('success', 'Compra efetuada com sucesso!');
     }

@@ -10,6 +10,8 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    public $timestamp = true;
+
     /**
      * The attributes that are mass assignable.
      *
