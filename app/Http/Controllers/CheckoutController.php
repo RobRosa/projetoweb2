@@ -32,19 +32,22 @@ class CheckoutController extends Controller
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
 
-        foreach ($cart as $row) {
-            // dd($row);
-            $sale = Sale::create([
-                'price_total' => $row[2]['price']
-            ]);
-            $itemSale = ItemSale::create([
-                'amount' => $row[2]['amount'],
-                'sale_id' => $sale->id,
-                'product_id' => $row[2]['item']['attributes']['id']
-            ]);
+        $sale = Sale::create([
+            'price_total' => $cart->totalPrice
+        ]);
+
+        foreach ($cart->items as $values) {
+            for ($i=1; $i<=$values['amount'];$i++) {
+                $attr = $values['item']->getAttributes();
+                $itemSale = ItemSale::create([
+                    'amount' => $values['amount'],
+                    'sale_id' => $sale->id,
+                    'product_id' => $attr['id']
+                ]);
+            }
         }
 
         Session::forget('cart');
-    	return redirect()->route('product.index')->with('success', 'Compra efetuada com sucesso!');
+    	return redirect()->route('product.index');
     }
 }
