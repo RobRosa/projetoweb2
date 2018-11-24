@@ -3,9 +3,9 @@
 namespace projetoweb2\Http\Controllers;
 
 use Illuminate\Http\Request;
-use projetoWeb2\Telephone;
+use projetoweb2\Telephone;
 use Illuminate\Support\Facades\Auth;
-use projetoWeb2\Address;
+use projetoweb2\Address;
 
 class HomeController extends Controller
 {

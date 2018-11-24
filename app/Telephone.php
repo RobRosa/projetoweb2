@@ -1,6 +1,6 @@
 <?php
 
-namespace projetoWeb2;
+namespace projetoweb2;
 
 use Illuminate\Database\Eloquent\Model;
 
