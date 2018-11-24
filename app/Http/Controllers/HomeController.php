@@ -45,7 +45,7 @@ class HomeController extends Controller
     }
 
     public function showUpdate(){
-         $user = Auth::user();
+        $user = Auth::user();
 
         $userInfo = [
             'id'            => $user->id,
@@ -61,5 +61,33 @@ class HomeController extends Controller
         return view('perfilUpdate', [
             'userInfo' => $userInfo
         ]);
+    }
+
+    public function updateSave(Request $request){
+        $user = Auth::user();
+        $user->name            = $request["name"];
+        $user->email           = $request["email"];
+        $user->data_nascimento = $request["nascimento"];
+        $user->sexo            = $request["sexo"];
+
+        $telephone = Telephone::where('user_id', $user->id)->first();
+        $telephone->ddd       = $request["ddd"];
+        $telephone->telephone = $request["telephone"];
+        
+        $address = Address::where('user_id', $user->id)->first() ?? new Address;
+        $address->user_id     = $user->id;
+        $address->endereco    = $request["address"];
+        $address->cep         = $request["cep"];
+        $address->numero      = $request["numero"];
+        $address->bairro      = $request["bairro"];
+        $address->cidade      = $request["cidade"];
+        $address->estado      = $request["estado"];
+        $address->complemento = $request["complemento"];
+
+        $user->save();
+        $telephone->save();
+        $address->save();
+
+        return redirect()->route('perfil');
     }
 }

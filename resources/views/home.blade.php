@@ -41,12 +41,12 @@
                     <td><b>Endereço:</b></td>
                     <td>
                         @if($userInfo['address']):
-                            <div><b>CEP:</b> $userInfo['address']->cep</div>
-                            <div><b>Endereço:</b> $userInfo['address']->endereco <b>Nº:</b>$userInfo['address']->endereco</div>
-                            <div><b>Bairro:</b> $userInfo['address']->bairro</div>
-                            <div><b>Cidade:</b> $userInfo['address']->cidade</div>
-                            <div><b>Estado:</b> $userInfo['address']->estado</div>
-                            <div><b>Complemento:</b> $userInfo['address']->complemento</div>
+                            <div><b>CEP:</b> {{ $userInfo['address']->cep }}</div>
+                            <div><b>Endereço:</b> {{ $userInfo['address']->endereco }} <b>Nº:</b>{{ $userInfo['address']->numero }}</div>
+                            <div><b>Bairro:</b> {{ $userInfo['address']->bairro }}</div>
+                            <div><b>Cidade:</b> {{ $userInfo['address']->cidade }}</div>
+                            <div><b>Estado:</b> {{ $userInfo['address']->estado }}</div>
+                            <div><b>Complemento:</b> {{ $userInfo['address']->complemento }}</div>
                         @else
                             <p class="alert alert-warning">* Por favor, registre um endereço em seu perfil</p>
                         @endif
@@ -54,7 +54,7 @@
                 </tr>
                 <tr>
                     <td colspan="2" class="text-right">
-                        <button class="btn btn-primary">Atualizar Dados</button>
+                        <a href="{{ route('atualizarPerfil') }}" class="btn btn-primary">Atualizar Dados</a>
                     </td>
                 </tr>
             </table>
