@@ -12,7 +12,12 @@
 */
 Auth::routes();
 
+Route::get('/perfil', 'HomeController@index')->name('perfil');
+Route::get('/perfil/atualizar', 'HomeController@showUpdate')->name('atualizarPerfil');
+Route::post('/perfil/atualizar/salvar', 'HomeController@updateSave')->name('salvaAtualizacao');
+
 Route::get('/', 'ProductController@index');
+Route::resource('product','ProductController');
 
 Route::get('/cart/{id}', [
 	'uses' 	=> 'CartController@setCart',
@@ -34,8 +39,3 @@ Route::post('/checkout/validation', [
 	'as'	=> 'checkout.validation'
 ])->middleware('auth');
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/perfil', 'PerfilController@index')->middleware('auth');
-
-Route::resource('product','ProductController');

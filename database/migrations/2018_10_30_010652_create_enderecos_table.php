@@ -18,9 +18,10 @@ class CreateEnderecosTable extends Migration
             $table->char('cep', 8);
             $table->string('endereco');
             $table->string('numero', 5);
-            $table->string('complemento');
+            $table->string('bairro');
             $table->string('cidade');
             $table->char('estado', 2);
+            $table->string('complemento');
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
