@@ -1,43 +1,18 @@
 @extends('layouts.app')
 @section('content')
 	<div class="container">
-		<div class="row">
-			<div class="col-md-10">
-				<h2>Product Detail</h2>
+		<div class="row my-5">
+			<div class="col-md-4">
+				<img src="{{ $product->image_name ? asset('storage/products/' . $product->image_name) : asset('storage/imagem_indisponivel.jpg') }}" width="100%">
 			</div>
-			<div class="col-md-2">
-				<a class="btn btn-primary" href="{{ route('product.index') }}" title="Back">Back</a>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12">
-				<div class="form-group">
-					<p><strong>Name:</strong> {{ $product->name }}</p>
-				</div>
-			</div>
-			<div class="col-md-12">
-				<div class="form-group">
-					<p><strong>Description:</strong> {{ $product->description }}</p>
-				</div>
-			</div>
-			<div class="col-md-12">
-				<div class="form-group">
-					<p><strong>Brand:</strong> {{ $product->brand }}</p>
-				</div>
-			</div>
-			<div class="col-md-12">
-				<div class="form-group">
-					<p><strong>Color:</strong> {{ $product->color }}</p>
-				</div>
-			</div>
-			<div class="col-md-12">
-				<div class="form-group">
-					<p><strong>Price:</strong> {{ $product->price }}</p>
-				</div>
-			</div>
-			<div class="col-md-12">
-				<div class="form-group">
-					<p><strong>Amount:</strong> {{ $product->amount }}</p>
+			<div class="col-md-8">
+				<h1>{{ $product->name }}</h1>
+				<p><b>Descrição do produto</b><br>{{ $product->description }}</p>
+				<div><b>Marca </b><br>{{ $product->brand }}</div>
+				<div><b>Cor </b><br>{{ $product->color }}</div>
+				<div>R$ {{ $product->price }}</div>
+				<div>
+					<a href="{{ route('cart.add', ['id' => $product->id, 'goToCart' => true]) }}" class="btn btn-success btn-lg rounded-0 my-1">Comprar</a>
 				</div>
 			</div>
 		</div>

@@ -1,3 +1,14 @@
+html,
+body,
+#app,
+main{
+	min-height: 100vh;
+}
+
+body{
+	color: #555;
+}
+
 .link-no-style,
 .link-no-style:hover{
 	color: inherit;

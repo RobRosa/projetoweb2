@@ -83,6 +83,10 @@
         <main>
             @yield('content')
         </main>
+
+        <footer class="text-center mt-4 py-2" style="background-color: #555; color: #fff">
+            <p class="my-0">&copy; Copyright Robson Rosa & Rodrigo Scotti - team AmamosWeb2Py</p>
+        </footer>
     </div>
 </body>
 </html>
