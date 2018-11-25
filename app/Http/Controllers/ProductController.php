@@ -37,15 +37,37 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=>'required|string|max:30',
-            'description'=>'required|string|max:255',
-            'brand'=>'required|string|max:30',
-            'color'=>'required|string|max:15',
-            'price'=>'required|numeric',
-            'amount'=>'required|numeric'
+            'name'        => 'required|string|max:30',
+            'description' => 'required|string|max:255',
+            'brand'       => 'required|string|max:30',
+            'color'       => 'required|string|max:15',
+            'price'       => 'required|numeric',
+            'amount'      => 'required|numeric',
+            'category'    => 'required|string'
         ]);
 
-        Product::create($request->all());
+        $product = [
+            'name'        => $request->name,
+            'description' => $request->description,
+            'brand'       => $request->brand,
+            'color'       => $request->color,
+            'price'       => $request->price,
+            'amount'      => $request->amount,
+            'category'    => $request->category
+        ];
+
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $imageName = \Auth::user()->id . '_' . round(microtime(true)) . '_' . kebab_case($request->file('image')->getClientOriginalName());
+
+            $upload = $request->file('image')->storeAs('products', $imageName);
+
+            $product['image_name'] = $imageName;
+            if (!$upload) {
+                $product['image_name'] = null;
+            }
+        }
+
+        Product::create($product);
         return redirect()->route('product.index')->with('success', 'criou');
     }
 
@@ -83,12 +105,12 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name'=>'required|string|max:30',
-            'description'=>'required|string|max:255',
-            'brand'=>'required|string|max:30',
-            'color'=>'required|string|max:15',
-            'price'=>'required|numeric',
-            'amount'=>'required|numeric'
+            'name'          => 'required|string|max:30',
+            'description'   => 'required|string|max:255',
+            'brand'         => 'required|string|max:30',
+            'color'         => 'required|string|max:15',
+            'price'         => 'required|numeric',
+            'amount'        => 'required|numeric'
         ]);
 
         $product = Product::find($id);

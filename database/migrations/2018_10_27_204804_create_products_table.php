@@ -21,6 +21,8 @@ class CreateProductsTable extends Migration
             $table->string('color');
             $table->decimal('price');
             $table->integer('amount');
+            $table->string('category');
+            $table->string('image_name')->nullable();
             $table->timestamps();
         });
     }

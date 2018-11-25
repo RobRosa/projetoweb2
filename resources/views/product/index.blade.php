@@ -1,77 +1,39 @@
 @extends('layouts.app')
 
-<style>
-	.header-product {
-		background-image: url('https://images.pexels.com/photos/262100/pexels-photo-262100.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
-		background-size: 100%;
-		background-position: center;
-		background-repeat: no-repeat;
-		height: 600px;
-		width: 100%;
-		position: relative;
-	}
-	.header-product .header-background {
-		background-color: rgba(31,31,31,.5);
-		position: absolute;
-		left: 0;
-		top: 0;
-		width: 100%;
-		height: 100%;
-		z-index: 1;
-	}
-	.header-product .header-background .header-description {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%,-50%);
-		text-align: center;
-		color: #fff;
-	}
-
-	.section-product {
-		width: 100%;
-		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
-		justify-content: space-between;
-		padding: 46px 0;
-	}
-	.section-product .card {
-		margin: 20px 0;
-	}
-	.section-product .card .card-body {
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-	}
-	.section-product .card .card-body .card-title-product {
-		font-size: 1.4em;
-	}
-</style>
-
 @section('content')
-	<div class="container">
-		<div class="header-product">
-			<div class="header-background">
-				<div class="header-description">
-					<h1>Evite tranqueiras</h1>
-					<p>Compre online sem se estressar com o transito.</p>
-				</div>
+	<div class="header-product">
+		<div class="header-background">
+			<div class="header-description">
+				<h1>Evite tranqueiras</h1>
+				<p>Compre online sem se estressar com o transito.</p>
 			</div>
 		</div>
+	</div>
+	<div class="container">
 		<div class="section-product">
-			@foreach ($products as $row)
-			<div class="card" style="width: 14rem;">
-				<img class="card-img-top" src="https://pbs.twimg.com/profile_images/717306100312383488/f38LU5Cu.jpg" alt="Card image cap" style="height: 200px;">
-				<div class="card-body">
-					<h2 class="card-title-product">{{ $row->name }}</h2>
-					<p class="card-text">R$ {{ $row->price }}</p>
-					<div class="button-group">
-						<a href="{{ route('cart.add', ['id' => $row->id]) }}" class="btn btn-dark">Cart</a>
+			<div class="row">
+				@foreach ($products as $row)
+				<div class="col-lg-3 col-md-6 mb-5">
+					<div class="card">
+						<a class="link-no-style" href="/product/{{ $row->id }}">
+							<img class="card-img-top" src="{{ $row->image_name ? asset('storage/products/'. $row->image_name) : asset('storage/imagem_indisponivel.jpg') }}" alt="Card image cap">
+						</a>
+						<div class="card-body">
+							<a class="link-no-style" href="/product/{{ $row->id }}">
+								<h2 class="card-title-product">{{ $row->name }}</h2>
+								<p class="card-text">R$ {{ $row->price }}</p>
+							</a>
+							<div class="button-group">
+								<a href="{{ route('cart.add', ['id' => $row->id]) }}" class="btn btn-success d-block rounded-0 my-1">+ Carrinho</a>
+								<a href="/product/{{ $row->id }}" class="btn btn-primary d-block rounded-0 my-1">Detalhes</a>
+							</div>
+						</div>
 					</div>
+					
 				</div>
+				@endforeach
 			</div>
-			@endforeach
 		</div>
 		{!! $products->links() !!}
+	</div>
 @endsection

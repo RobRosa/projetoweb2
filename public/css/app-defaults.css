@@ -1,0 +1,5 @@
+.link-no-style,
+.link-no-style:hover{
+	color: inherit;
+	text-decoration: none;
+}

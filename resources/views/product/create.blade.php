@@ -19,12 +19,12 @@
 				</ul>
 			</div>
 		@endif
-		<form action="{{ route('product.store') }}" method="post">
+		<form action="{{ route('product.store') }}" method="post" enctype="multipart/form-data">
 			@csrf
 			<div class="row">
 				<div class="col-md-12">
 					<label>{{ __('Name') }}</label>
-					<input type="text" name="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="Playstation" autofocus>
+					<input type="text" name="name" class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="Playstation" autofocus>
 					@if ($errors->has('name'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('name') }}</strong>
@@ -33,7 +33,7 @@
 				</div>
 				<div class="col-md-12">
 					<label>{{ __('Description') }}</label>
-					<textarea type="text" name="description" class="form-control{{ $errors->has('description') ? ' is-invalid' : '' }}" placeholder="Quero Playstation" rows="8" cols="80"></textarea>
+					<textarea type="text" name="description" class="form-control {{ $errors->has('description') ? ' is-invalid' : '' }}" placeholder="Quero Playstation" rows="8" cols="80"></textarea>
 					@if ($errors->has('description'))
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $errors->first('description') }}</strong>
@@ -42,7 +42,7 @@
 				</div>
 				<div class="col-md-12">
 					<label>{{ __('Brand') }}</label>
-					<input type="text" name="brand" class="form-control{{ $errors->has('brand') ? ' is-invalid' : '' }}" placeholder="Sony">
+					<input type="text" name="brand" class="form-control {{ $errors->has('brand') ? ' is-invalid' : '' }}" placeholder="Sony">
 					@if ($errors->has('brand'))
 						<span class="invalid-feedback" role="alert">
 							<strong>{{ $errors->first('brand') }}</strong>
@@ -51,7 +51,7 @@
 				</div>
 				<div class="col-md-12">
 					<label>{{ __('Color') }}</label>
-					<input type="text" name="color" class="form-control{{ $errors->has('color') ? ' is-invalid' : '' }}" placeholder="Black">
+					<input type="text" name="color" class="form-control {{ $errors->has('color') ? ' is-invalid' : '' }}" placeholder="Black">
 					@if ($errors->has('color'))
 						<span class="invalid-feedback" role="alert">
 							<strong>{{ $errors->first('color') }}</strong>
@@ -60,7 +60,7 @@
 				</div>
 				<div class="col-md-12">
 					<label>{{ __('Price') }}</label>
-					<input type="text" name="price" class="form-control{{ $errors->has('price') ? ' is-invalid' : '' }}" placeholder="1200">
+					<input type="text" name="price" class="form-control {{ $errors->has('price') ? ' is-invalid' : '' }}" placeholder="1200">
 					@if ($errors->has('price'))
 						<span class="invalid-feedback" role="alert">
 							<strong>{{ $errors->first('price') }}</strong>
@@ -68,11 +68,31 @@
 					@endif
 				</div>
 				<div class="col-md-12">
-					<label>Amount {{ __('Amount') }}</label>
-					<input type="text" name="amount" class="form-control{{ $errors->has('amount') ? ' is-invalid' : '' }}" placeholder="100">
+					<label>{{ __('Amount') }}</label>
+					<input type="text" name="amount" class="form-control {{ $errors->has('amount') ? ' is-invalid' : '' }}" placeholder="100">
 					@if ($errors->has('amount'))
 						<span class="invalid-feedback" role="alert">
 							<strong>{{ $errors->first('amount') }}</strong>
+						</span>
+					@endif
+				</div>
+
+				<div class="col-md-12">
+					<label>{{ __('Category') }}</label>
+					<input type="text" name="category" class="form-control {{ $errors->has('category') ? ' is-invalid' : '' }}" placeholder="Eletrônicos">
+					@if ($errors->has('category'))
+						<span class="invalid-feedback" role="alert">
+							<strong>{{ $errors->first('category') }}</strong>
+						</span>
+					@endif
+				</div>
+
+				<div class="col-md-12">
+					<label>{{ __('Image') }}</label>
+					<input type="file" name="image" class="form-control-file {{ $errors->has('amount') ? ' is-invalid' : '' }}" accept="image/jpg, image/jpeg, image/png">
+					@if ($errors->has('image'))
+						<span class="invalid-feedback" role="alert">
+							<strong>{{ $errors->first('image') }}</strong>
 						</span>
 					@endif
 				</div>
