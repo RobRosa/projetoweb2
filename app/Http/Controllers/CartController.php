@@ -37,4 +37,19 @@ class CartController extends Controller
         $cart = new Cart($oldCart);
         return view('cart.myCart', ['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);
     }
+
+    public function removeCart(Request $request, $id) {
+        $carts = session()->get('cart');
+        if ($carts->totalQty == 1) {
+            $request->session()->forget('cart');
+        }
+        elseif ($carts->items[$id]['amount'] == 1) {
+            unset($carts->items[$id]);
+        }
+        else {
+            $carts->items[$id]['amount'] --;
+        }
+        $carts->totalQty --;
+        return redirect()->back();
+    }
 }

@@ -19,13 +19,16 @@
             	<div class="card-body">
 					<div class="row">
 						<ul class="list-group">
-							@foreach($products as $product)
+							@foreach($products as $key => $product)
 							<li class="list-group-item">
 								<p>Quantidade: 
 									<strong>{{ $product['amount'] }}</strong>
 								</p>
 								<p>Nome: 
 									<strong>{{ $product['item']['name'] }}</strong>
+								</p>
+								<p>
+									<a href="{{ route('cart.remove', $key) }}">Remover</a>
 								</p>
 								<p>Preço: 
 									<strong>{{ $product['price'] }}</strong>

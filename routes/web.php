@@ -12,7 +12,12 @@
 */
 Auth::routes();
 
+Route::get('/perfil', 'HomeController@index')->name('perfil');
+Route::get('/perfil/atualizar', 'HomeController@showUpdate')->name('atualizarPerfil');
+Route::post('/perfil/atualizar/salvar', 'HomeController@updateSave')->name('salvaAtualizacao');
+
 Route::get('/', 'ProductController@index');
+Route::resource('product','ProductController');
 
 Route::get('/cart/{id}', [
 	'uses' 	=> 'CartController@setCart',
@@ -22,6 +27,11 @@ Route::get('/cart/{id}', [
 Route::get('/myCart', [
 	'uses'	=> 'CartController@getCart',
 	'as'	=> 'cart.myCart'
+]);
+
+Route::get('/cart/remove/{id}', [
+	'uses'	=> 'CartController@removeCart',
+	'as'	=> 'cart.remove'
 ]);
 
 Route::get('/checkout', [
@@ -34,8 +44,3 @@ Route::post('/checkout/validation', [
 	'as'	=> 'checkout.validation'
 ])->middleware('auth');
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/perfil', 'PerfilController@index')->middleware('auth');
-
-Route::resource('product','ProductController');
