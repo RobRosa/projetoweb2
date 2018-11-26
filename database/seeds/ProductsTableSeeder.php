@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 class ProductsTableSeeder extends Seeder
 {
 
-    private static $qtdProducts = 15;
+    private static $qtdProducts = 50;
 
     /**
      * Run the database seeds.
@@ -22,6 +22,11 @@ class ProductsTableSeeder extends Seeder
     	return $desc;
     }
 
+    private function getCategory(){
+        $cat = ['Eletrônicos','Brinquedos','Roupas','Livros','Eletrodomésticos','Esportes'];
+        return $cat[rand(0, sizeof($cat) - 1)];
+    }
+
     public function run()
     {
     	$arrProducts = [];
@@ -31,11 +36,11 @@ class ProductsTableSeeder extends Seeder
     		$product = [
         		'name' 			=> $this->getProdString(random_int(1, 4)),
 		        'description' 	=> $this->getProdString(random_int(1, 15)),
-		        'brand' 		=> str_random(random_int(1, 20)),
+		        'brand' 		=> str_random(random_int(1, 15)),
 		        'color' 		=> str_random(random_int(1, 20)),
 		        'price' 		=> mt_rand(1, 10000) + ($priceCents > 0 ? $priceCents / 100 : 0),
 				'amount' 		=> random_int(0, 1000),
-                'category'      => str_random(random_int(1, 15))
+                'category'      => $this->getCategory()
         	];
 
         	array_push($arrProducts, $product);

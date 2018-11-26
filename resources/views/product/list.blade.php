@@ -1,22 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-	<div class="header-product">
-		<div class="header-background">
-			<div class="header-description">
-				<h1>Evite tranqueiras</h1>
-				<p>Compre online sem se estressar com o transito.</p>
-			</div>
-		</div>
-	</div>
 	<div class="container">
-		@foreach ($categoryProducts as $row)
 		<div class="section-product border ronded px-3 pb-3">
-			<a class='link-no-style' href="{{ 'categorias/' . $row['category']['id'] . '/' . $row['category']['link'] }}">
-				<h2 class="text-center py-3">{{$row['category']['name']}}</h2>
-			</a>
+			<h2 class="text-center py-3">Categoria: {{ $category }} </h2>
 			<div class="row">
-				@foreach ($row['products'] as $product)
+				@foreach ($products as $product)
 				<div class="col-lg-3 col-md-6 mb-2">
 					<div class="card">
 						<a class="link-no-style" href="/product/{{ $product->id }}">
@@ -37,6 +26,6 @@
 				@endforeach
 			</div>
 		</div>
-		@endforeach
+		{!! $products->links() !!}
 	</div>
 @endsection

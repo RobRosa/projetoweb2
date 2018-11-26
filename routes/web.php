@@ -49,3 +49,4 @@ Route::group([
 	Route::get('products/create', 'ProductController@create');
 });
 
+Route::get('/categorias/{id}/{name}', 'ProductController@categoryFilter');

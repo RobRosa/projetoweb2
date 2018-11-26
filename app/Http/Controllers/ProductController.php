@@ -4,6 +4,8 @@ namespace projetoweb2\Http\Controllers;
 
 use Illuminate\Http\Request;
 use projetoweb2\Product;
+use projetoweb2\Category;
+use projetoweb2\Helpers\StringHelper;
 
 class ProductController extends Controller
 {
@@ -14,8 +16,21 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::latest()->paginate(8);
-        return view('product.index', compact('products'))->with('i', (request()->input('page',1) -1)*8);
+        $categories = Category::all();
+        $categoryProducts = [];
+
+        foreach ($categories as $category) {
+            $categoryProducts[] = [
+                'category' => [
+                    'id'   => $category->id,
+                    'name' => $category->name,
+                    'link' => strtolower(StringHelper::removeAcentos($category->name))
+                ],
+                'products' => Product::where('category', $category->name)->limit(4)->get()
+            ];
+        }
+
+        return view('product.index', compact('categoryProducts'));
     }
 
     /**
@@ -135,5 +150,12 @@ class ProductController extends Controller
         $product = Product::find($id);
         $product->delete();
         return redirect()->route('product.index')->with('success', 'deletou');
+    }
+
+    public function categoryFilter($catId, $catName){
+        $category = Category::where('id', $catId)->first()->name;
+        $products = Product::where('category', $category)->paginate(12);
+
+        return view('product.list', compact('products', 'category'))->with('i', (request()->input('page',1) -1)*8);
     }
 }

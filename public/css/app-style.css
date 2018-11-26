@@ -26,7 +26,8 @@
 }
 
 .section-product {
-	padding: 50px 0;
+	margin: 50px 0;
+	background-color: #fff;
 }
 .section-product .card {
 	height: 100%;

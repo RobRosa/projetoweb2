@@ -40,9 +40,20 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>Categorias</a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="/categorias/1/eletronicos">Eletrônicos</a>
+                                <a class="dropdown-item" href="/categorias/2/brinquedos">Brinquedos</a>
+                                <a class="dropdown-item" href="/categorias/3/roupas">Roupas</a>
+                                <a class="dropdown-item" href="/categorias/4/livros">Livros</a>
+                                <a class="dropdown-item" href="/categorias/5/eletrodomesticos">Eletrodomésticos</a>
+                                <a class="dropdown-item" href="/categorias/6/esportes">Esportes</a>
+                            </div>
+                        </li>
                         <li class="nav-item">
                             <a href="{{ route('cart.myCart') }}" class="nav-link">
-                                My Cart <span class="badge badge-primary">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }}</span>
+                                Meu Carrinho <span class="badge badge-primary">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }}</span>
                             </a>
                         </li>
                         <!-- Authentication Links -->
