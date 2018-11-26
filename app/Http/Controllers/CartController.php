@@ -17,7 +17,7 @@ class CartController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function setCart(Request $request, $id ) {
+    public function setCart(Request $request, $id) {
         $products = Product::find($id);
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
         $cart = new Cart($oldCart);
@@ -25,7 +25,12 @@ class CartController extends Controller
 
         $request->session()->put('cart', $cart);
         $request->session()->get('cart');
-        return redirect()->route('product.index');
+
+        if (!$request->goToCart === '1') {
+            return redirect()->route('product.index');
+        }
+
+        return redirect()->route('cart.myCart');
     }
 
     public function getCart() {

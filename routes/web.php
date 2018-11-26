@@ -19,6 +19,8 @@ Route::post('/perfil/atualizar/salvar', 'HomeController@updateSave')->name('salv
 Route::get('/', 'ProductController@index');
 Route::resource('product','ProductController');
 
+Route::get('/product/{id}', 'ProductController@show');
+
 Route::get('/cart/{id}', [
 	'uses' 	=> 'CartController@setCart',
 	'as'	=> 'cart.add'
@@ -39,3 +41,12 @@ Route::post('/checkout/validation', [
 	'as'	=> 'checkout.validation'
 ])->middleware('auth');
 
+
+Route::group([
+	'prefix' 	 => 'admin',
+	'middleware' => ['auth'],
+], function() {
+	Route::get('products/create', 'ProductController@create');
+});
+
+Route::get('/categorias/{id}/{name}', 'ProductController@categoryFilter');
