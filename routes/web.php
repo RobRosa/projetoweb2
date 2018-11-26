@@ -31,6 +31,11 @@ Route::get('/myCart', [
 	'as'	=> 'cart.myCart'
 ]);
 
+Route::get('/cart/remove/{id}', [
+	'uses'	=> 'CartController@removeCart',
+	'as'	=> 'cart.remove'
+]);
+
 Route::get('/checkout', [
 	'uses' 	=> 'CheckoutController@getCheckout',
 	'as'	=> 'checkout.index'
@@ -40,7 +45,6 @@ Route::post('/checkout/validation', [
 	'uses'	=> 'CheckoutController@validationCheckout',
 	'as'	=> 'checkout.validation'
 ])->middleware('auth');
-
 
 Route::group([
 	'prefix' 	 => 'admin',

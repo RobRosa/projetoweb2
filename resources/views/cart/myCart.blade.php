@@ -14,7 +14,7 @@
 	            </div>
 	            <div class="row">
 				@if (Session::has('cart'))
-					@foreach($products as $product)
+					@foreach($products as $key => $product)
 					<div class="col-md-12">
 						<div class="row p-3 border-bottom no-gutters">
 							<div class="col-md-2">
@@ -32,9 +32,9 @@
 								</p>
 							</div>
 							<div class="col-md-1 align-content-sm-center text-center">
-								<p>Qtd: 
-									<strong>{{ $product['amount'] }}</strong>
-								</p>
+								<a href="{{ route('cart.remove', $key) }}" title="Remover do carrinho">
+									<i class="far fa-trash-alt text-danger"></i>
+								</a>
 							</div>
 						</div>
 					</div>
