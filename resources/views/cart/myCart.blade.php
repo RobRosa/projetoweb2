@@ -30,10 +30,11 @@
 								<p>Qtd: 
 									<strong>{{ $product['amount'] }}</strong>
 								</p>
-							</div>
-							<div class="col-md-1 align-content-sm-center text-center">
-								<p>Qtd: 
-									<strong>{{ $product['amount'] }}</strong>
+								<p>
+									<a href="{{ route('cart.remove', $key) }}">Remover</a>
+								</p>
+								<p>Preço: 
+									<strong>{{ $product['price'] }}</strong>
 								</p>
 							</div>
 						</div>
