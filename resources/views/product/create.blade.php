@@ -79,7 +79,15 @@
 
 				<div class="col-md-12">
 					<label>{{ __('Category') }}</label>
-					<input type="text" name="category" class="form-control {{ $errors->has('category') ? ' is-invalid' : '' }}" placeholder="Eletrônicos">
+					<select name="category" class="form-control{{ $errors->has('category') ? ' is-invalid' : '' }}">
+						<option>Escolha uma categoria</option>
+						<option value="Eletrônicos">Eletrônicos</option>
+						<option value="Brinquedos">Brinquedos</option>
+						<option value="Roupas">Roupas</option>
+						<option value="Livros">Livros</option>
+						<option value="Eletrodomésticos">Eletrodomésticos</option>
+						<option value="Esportes">Esportes</option>
+					</select>
 					@if ($errors->has('category'))
 						<span class="invalid-feedback" role="alert">
 							<strong>{{ $errors->first('category') }}</strong>

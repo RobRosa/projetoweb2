@@ -4,10 +4,10 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-md-3">
-            <div style="width: 100%; height: 250px; background: #ddd;">Foto de Perfil</div>
+        <div class="col-md-3 my-5 bg-white py-3 border">
+            <img src="" title="Imagem do usuário">
         </div>
-        <div class="col-md-9">
+        <div class="col-md-9 my-5 bg-white py-3 border">
             <table class="table table-bordered" style="width:auto;">
                 <tr>
                     <td><b>Nome: </b></td>
