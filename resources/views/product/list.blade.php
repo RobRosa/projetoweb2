@@ -8,7 +8,6 @@
 				@foreach ($products as $product)
 				<div class="col-lg-3 col-md-6 mb-2">
 					<div class="card">
-						{{dd($product->image_name)}}
 						<a class="link-no-style" href="/product/{{ $product->id }}">
 							<img class="card-img-top" src="{{ $product->image_name ? asset('storage/products/'. $product->image_name) : asset('storage/imagem_indisponivel.jpg') }}" alt="Card image cap">
 						</a>

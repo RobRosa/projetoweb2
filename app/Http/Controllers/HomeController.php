@@ -35,6 +35,7 @@ class HomeController extends Controller
             'cpf'           => $user->cpf,
             'nascimento'    => $user->data_nascimento,
             'sexo'          => $user->sexo,
+            'image'         => $user->image,
             'telephones'    => Telephone::where('user_id', $user->id)->get(),
             'address'       => Address::find($user->id)
         ];
@@ -54,6 +55,7 @@ class HomeController extends Controller
             'cpf'           => $user->cpf,
             'nascimento'    => $user->data_nascimento,
             'sexo'          => $user->sexo,
+            'image'         => $user->image,
             'telephones'    => Telephone::where('user_id', $user->id)->get(),
             'address'       => Address::find($user->id)
         ];
@@ -69,6 +71,14 @@ class HomeController extends Controller
         $user->email           = $request["email"];
         $user->data_nascimento = $request["nascimento"];
         $user->sexo            = $request["sexo"];
+
+        if ($request["imageUp"]) {
+            $image = $request->file("imageUp");
+            $imageName = $user->name . 'Perfil.' . $image->getClientOriginalExtension();
+            $image->move(public_path("images"), $imageName);
+            $user->image = $imageName;
+        }
+
 
         $telephone = Telephone::where('user_id', $user->id)->first();
         $telephone->ddd       = $request["ddd"];

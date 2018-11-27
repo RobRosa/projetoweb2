@@ -5,10 +5,10 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3 my-5 bg-white py-3 border">
-            <img src="" title="Imagem do usuário">
+            <img src="/images/{{ $userInfo['image'] }}" title="Imagem do usuário">
         </div>
         <div class="col-md-9 my-5 bg-white py-3 border">
-            <table class="table table-bordered" style="width:auto;">
+            <table class="table table-bordered" style="width:auto; background-color: white">
                 <tr>
                     <td><b>Nome: </b></td>
                     <td>{{ $userInfo['name'] }}</td>
