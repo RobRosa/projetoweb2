@@ -158,4 +158,12 @@ class ProductController extends Controller
 
         return view('product.list', compact('products', 'category'))->with('i', (request()->input('page',1) -1)*8);
     }
+
+    public function search(Request $request){
+        $category = $query = $request->query('query');
+
+        $products = Product::where('name', 'LIKE', '%'.$query.'%')->paginate(12);        
+
+        return view('product.list', compact('products', 'category'))->with('i', (request()->input('page', 1) -1) *8);
+    }
 }

@@ -58,3 +58,5 @@ Route::group([
 });
 
 Route::get('/categorias/{id}/{name}', 'ProductController@categoryFilter');
+
+Route::get('/pesquisa', 'ProductController@search');

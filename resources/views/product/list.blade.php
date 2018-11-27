@@ -26,6 +26,6 @@
 				@endforeach
 			</div>
 		</div>
-		{!! $products->links() !!}
+		{!! $products !!}
 	</div>
 @endsection
