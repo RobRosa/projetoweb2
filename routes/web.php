@@ -35,6 +35,11 @@ Route::get('/cart/remove/{id}', [
 	'as'	=> 'cart.remove'
 ]);
 
+Route::get('/cart/removeItem/{id}', [
+	'uses'	=> 'CartController@removeItem',
+	'as'	=> 'cart.removeItem'
+]);
+
 Route::get('/checkout', [
 	'uses' 	=> 'CheckoutController@getCheckout',
 	'as'	=> 'checkout.index'

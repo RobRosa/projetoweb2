@@ -1,19 +1,22 @@
 @extends('layouts.app')
 
 @section('content')
-
-<div class="container">
+@if (!empty($warning))
+    <div class="alert alert-danger text-center"> {{ $warning }} </div>
+@endif
+<div class="container bg-white py-5">
     <form method="post" action="{{ route('salvaAtualizacao') }}" enctype="multipart/form-data">
         <div class="row">
             @csrf
             <div class="col-md-4">
+                <img src="{{ $userInfo['image'] ? asset('storage/user/' . $userInfo['image']) : '' }}">
                 <label>
                     Alterar a foto
                     <input type="file" name="imageUp">
                 </label>
             </div>
             <div class="col-md-8">
-                <table class="table table-bordered" style="width:auto; background-color: white">
+                <table class="table table-bordered">
                     <tr>
                         <td><b>Nome: </b></td>
                         <td><input class="form-control" type="" name="name" value="{{ $userInfo['name'] }}"></td>

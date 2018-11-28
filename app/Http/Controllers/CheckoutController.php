@@ -3,10 +3,12 @@
 namespace projetoweb2\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use projetoweb2\Checkout;
 use projetoweb2\ItemSale;
 use projetoweb2\Sale;
 use projetoweb2\Cart;
+use projetoweb2\Address;
 use Session;
 
 class CheckoutController extends Controller
@@ -22,10 +24,15 @@ class CheckoutController extends Controller
     }
 
     public function validationCheckout(Request $request) {
+        if (!Address::find(Auth::user()->id)) {
+            $request->session()->flash('warning', 'Você precisa preencher um Endereço para entrega para continuar suas compras.');
+            return redirect('perfil/atualizar');
+        }
+
         $request->validate([
     		'name'=>'required|string|max:30',
     		'card'=>'required|integer',
-    		'expiration'=>'required|string|max:5'
+    		'expiration'=>'required|after:today'
     	]);
     	Checkout::create($request->all());
 

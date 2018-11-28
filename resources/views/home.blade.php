@@ -2,13 +2,13 @@
 
 @section('content')
 
-<div class="container">
+<div class="container bg-white py-5">
     <div class="row">
         <div class="col-md-3 my-5 bg-white py-3 border">
-            <img src="/images/{{ $userInfo['image'] }}" title="Imagem do usuário">
+            <img src="{{ $userInfo['image'] ? asset('storage/user/' . $userInfo['image']) : '' }}">
         </div>
         <div class="col-md-9 my-5 bg-white py-3 border">
-            <table class="table table-bordered" style="width:auto; background-color: white">
+            <table class="table table-bordered">
                 <tr>
                     <td><b>Nome: </b></td>
                     <td>{{ $userInfo['name'] }}</td>

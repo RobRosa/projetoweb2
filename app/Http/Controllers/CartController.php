@@ -53,8 +53,20 @@ class CartController extends Controller
         }
         else {
             $carts->items[$id]['amount'] --;
+            $carts->totalQty --;
+            $carts->totalPrice -= $carts->items[$id]['item']->price;
         }
-        $carts->totalQty --;
+        return redirect()->back();
+    }
+
+    public function removeItem(Request $request, $id){
+        $carts = session()->get('cart');
+        $carts->totalQty -= $carts->items[$id]['amount'];
+        $carts->totalPrice -= $carts->items[$id]['price'];
+        unset($carts->items[$id]);
+        if (!$carts->totalQty) {
+            $request->session()->forget('cart');
+        }
         return redirect()->back();
     }
 }

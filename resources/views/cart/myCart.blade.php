@@ -30,12 +30,17 @@
 								<p>Qtd: 
 									<strong>{{ $product['amount'] }}</strong>
 								</p>
-								<p>
-									<a href="{{ route('cart.remove', $key) }}">Remover</a>
-								</p>
-								<p>Preço: 
-									<strong>{{ $product['price'] }}</strong>
-								</p>
+							</div>
+							<div class="col-md-1 align-content-sm-center text-center">
+								<a class="d-block my-2" href="{{ route('cart.add', $key) }}" title="Adicionar mais um item">
+									<i class="fas fa-plus text-primary"></i>
+								</a>
+								<a class="d-block my-2" href="{{ route('cart.remove', $key) }}" title="Remover um item">
+									<i class="fas fa-minus text-danger"></i>
+								</a>
+								<a class="d-block my-2" href="{{ route('cart.removeItem', $key) }}" title="Remover do carrinho">
+									<i class="far fa-trash-alt text-danger"></i>
+								</a>
 							</div>
 						</div>
 					</div>
