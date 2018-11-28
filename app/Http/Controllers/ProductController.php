@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use projetoweb2\Product;
 use projetoweb2\Category;
 use projetoweb2\Helpers\StringHelper;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -40,7 +41,12 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('product.create');
+        // dd(Auth::user());
+        if (!empty(Auth::user()) && Auth::user()->admin === 1) {
+            return view('product.create');
+        } else {
+            return redirect('/');
+        }
     }
 
     /**

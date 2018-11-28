@@ -23,7 +23,7 @@
 							<div class="col-md-8">
 								<h4>{{ $product['item']['name'] }}</h4>
 								<p>Preço: 
-									<strong>R$ {{ $product['price'] }}</strong>
+									<strong>R$ {{ number_format($product['item']->price, 2) }}</strong>
 								</p>
 							</div>
 							<div class="col-md-1 align-content-sm-center text-center">
@@ -32,13 +32,13 @@
 								</p>
 							</div>
 							<div class="col-md-1 align-content-sm-center text-center">
-								<a class="d-block my-2" href="{{ route('cart.add', $product['item']->id) }}" title="Adicionar mais um item">+1
+								<a class="d-block my-2" href="{{ route('cart.add', $product['item']->id) }}" title="Adicionar mais um item">
 									<i class="fas fa-plus text-primary"></i>
 								</a>
-								<a class="d-block my-2" href="{{ route('cart.remove', $product['item']->id) }}" title="Remover um item">-1
+								<a class="d-block my-2" href="{{ route('cart.remove', $product['item']->id) }}" title="Remover um item">
 									<i class="fas fa-minus text-danger"></i>
 								</a>
-								<a class="d-block my-2" href="{{ route('cart.removeItem', $product['item']->id) }}" title="Remover do carrinho">Excluir
+								<a class="d-block my-2" href="{{ route('cart.removeItem', $product['item']->id) }}" title="Remover do carrinho">
 									<i class="far fa-trash-alt text-danger"></i>
 								</a>
 							</div>
@@ -49,7 +49,7 @@
 						<div class="card-footer">
 							<div class="row">
 								<div class="col-md-6">
-			            			<strong>Total: R$ {{ $totalPrice }}</strong>
+			            			<strong>Total: R$ {{ number_format($totalPrice, 2) }}</strong>
 			            		</div>
 			            		<div class="col-md-6 text-right">
 									<a href="{{ route('checkout.index') }}" class="btn btn-success" title="compre agora">Continuar para pagamento</a>

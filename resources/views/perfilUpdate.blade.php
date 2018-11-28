@@ -9,7 +9,7 @@
         <div class="row">
             @csrf
             <div class="col-md-4">
-                <img src="{{ $userInfo['image'] ? asset('storage/user/' . $userInfo['image']) : '' }}" class="rounded-circle">
+                <img style="max-width: 100%;" src="{{ $userInfo['image'] ? asset('storage/user/' . $userInfo['image']) : '' }}" class="rounded-circle">
                 <label>
                     Alterar a foto
                     <input type="file" name="imageUp">

@@ -15,6 +15,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('font-awesome/css/all.min.css') }}">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -59,6 +60,7 @@
                                 </li>
                                 <li class="nav-item">
                                     <a href="{{ route('cart.myCart') }}" class="nav-link">
+                                        <i class="fas fa-shopping-cart text-secondary"></i>
                                         Meu Carrinho <span class="badge badge-primary">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }}</span>
                                     </a>
                                 </li>

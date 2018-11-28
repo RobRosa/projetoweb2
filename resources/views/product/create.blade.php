@@ -1,12 +1,9 @@
 @extends('layouts.app')
 @section('content')
-	<div class="container">
+	<div class="container my-5">
 		<div class="row">
-			<div class="col-md-10">
-				<h2>Product create</h2>
-			</div>
-			<div class="col-md-2">
-				<a class="btn btn-primary" href="{{ route('product.index') }}" title="back">back</a>
+			<div class="col-md-8 offset-2">
+				<h2>Criação de Produtos</h2>
 			</div>
 		</div>
 		@if ($errors->any())
@@ -22,7 +19,7 @@
 		<form action="{{ route('product.store') }}" method="post" enctype="multipart/form-data">
 			@csrf
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-md-8 offset-2 bg-white p-3">
 					<label>{{ __('Name') }}</label>
 					<input type="text" name="name" class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="Playstation" autofocus>
 					@if ($errors->has('name'))
@@ -30,8 +27,7 @@
                             <strong>{{ $errors->first('name') }}</strong>
                         </span>
                     @endif
-				</div>
-				<div class="col-md-12">
+				
 					<label>{{ __('Description') }}</label>
 					<textarea type="text" name="description" class="form-control {{ $errors->has('description') ? ' is-invalid' : '' }}" placeholder="Quero Playstation" rows="8" cols="80"></textarea>
 					@if ($errors->has('description'))
@@ -39,8 +35,7 @@
                             <strong>{{ $errors->first('description') }}</strong>
                         </span>
                     @endif
-				</div>
-				<div class="col-md-12">
+				
 					<label>{{ __('Brand') }}</label>
 					<input type="text" name="brand" class="form-control {{ $errors->has('brand') ? ' is-invalid' : '' }}" placeholder="Sony">
 					@if ($errors->has('brand'))
@@ -48,8 +43,7 @@
 							<strong>{{ $errors->first('brand') }}</strong>
 						</span>
 					@endif
-				</div>
-				<div class="col-md-12">
+				
 					<label>{{ __('Color') }}</label>
 					<input type="text" name="color" class="form-control {{ $errors->has('color') ? ' is-invalid' : '' }}" placeholder="Black">
 					@if ($errors->has('color'))
@@ -57,8 +51,7 @@
 							<strong>{{ $errors->first('color') }}</strong>
 						</span>
 					@endif
-				</div>
-				<div class="col-md-12">
+				
 					<label>{{ __('Price') }}</label>
 					<input type="text" name="price" class="form-control {{ $errors->has('price') ? ' is-invalid' : '' }}" placeholder="1200">
 					@if ($errors->has('price'))
@@ -66,8 +59,7 @@
 							<strong>{{ $errors->first('price') }}</strong>
 						</span>
 					@endif
-				</div>
-				<div class="col-md-12">
+				
 					<label>{{ __('Amount') }}</label>
 					<input type="text" name="amount" class="form-control {{ $errors->has('amount') ? ' is-invalid' : '' }}" placeholder="100">
 					@if ($errors->has('amount'))
@@ -75,9 +67,7 @@
 							<strong>{{ $errors->first('amount') }}</strong>
 						</span>
 					@endif
-				</div>
-
-				<div class="col-md-12">
+				
 					<label>{{ __('Category') }}</label>
 					<select name="category" class="form-control{{ $errors->has('category') ? ' is-invalid' : '' }}">
 						<option>Escolha uma categoria</option>
@@ -93,9 +83,7 @@
 							<strong>{{ $errors->first('category') }}</strong>
 						</span>
 					@endif
-				</div>
-
-				<div class="col-md-12">
+				
 					<label>{{ __('Image') }}</label>
 					<input type="file" name="image" class="form-control-file {{ $errors->has('amount') ? ' is-invalid' : '' }}" accept="image/jpg, image/jpeg, image/png">
 					@if ($errors->has('image'))
@@ -103,8 +91,7 @@
 							<strong>{{ $errors->first('image') }}</strong>
 						</span>
 					@endif
-				</div>
-				<div class="col-md-12">
+					<br>
 					<input type="submit" value="Submit" class="btn btn-success">
 				</div>
 			</div>

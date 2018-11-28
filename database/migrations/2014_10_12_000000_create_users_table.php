@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->date('data_nascimento')->nullable(false);
             $table->char('sexo', 1);
             $table->string('image')->nullable();
+            $table->boolean('admin')->nullable('false')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

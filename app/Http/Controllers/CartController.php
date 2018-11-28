@@ -19,55 +19,38 @@ class CartController extends Controller
      */
     public function setCart(Request $request, $id) {
         $products = Product::find($id);
-        $oldCart = Session::has('cart') ? Session::get('cart') : null;
-        $cart = new Cart($oldCart);
+        
+        $cart = new Cart();
         $cart->add($products, $products->id);
 
-        $request->session()->put('cart', $cart);
-        $request->session()->get('cart');
-
-        if (!$request->goToCart === '1') {
-            return redirect()->route('product.index');
+        if ($request->input('goToCart')  === '1') {
+            return redirect()->route('cart.myCart');
         }
-
+    
         return redirect()->route('cart.myCart');
     }
 
-    public function getCart() {
+    public function getCart(Request $request) {
         if (!Session::has('cart')) {
             return view('cart.myCart');
         }
 
         $oldCart = Session::get('cart');
-        $cart = new Cart($oldCart);
+        $cart = new Cart($request);
 
         return view('cart.myCart', ['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);
     }
 
     public function removeCart(Request $request, $id) {
-        $carts = session()->get('cart');
-        if ($carts->totalQty == 1) {
-            $request->session()->forget('cart');
-        }
-        elseif ($carts->items[$id]['amount'] == 1) {
-            unset($carts->items[$id]);
-        }
-        else {
-            $carts->items[$id]['amount'] --;
-            $carts->totalQty --;
-            $carts->totalPrice -= $carts->items[$id]['item']->price;
-        }
+        $carts = new Cart();
+        $carts->remove($id);
+        
         return redirect()->back();
     }
 
     public function removeItem(Request $request, $id){
-        $carts = session()->get('cart');
-        $carts->totalQty -= $carts->items[$id]['amount'];
-        $carts->totalPrice -= $carts->items[$id]['price'];
-        unset($carts->items[$id]);
-        if (!$carts->totalQty) {
-            $request->session()->forget('cart');
-        }
+        $carts = new Cart();
+        $carts->removeProduct($id);
         return redirect()->back();
     }
 }
