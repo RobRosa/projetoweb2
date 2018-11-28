@@ -18,7 +18,6 @@ Route::post('/perfil/atualizar/salvar', 'HomeController@updateSave')->name('salv
 
 Route::get('/', 'ProductController@index');
 Route::resource('product','ProductController');
-
 Route::get('/product/{id}', 'ProductController@show');
 
 Route::get('/cart/{id}', [
@@ -31,6 +30,16 @@ Route::get('/myCart', [
 	'as'	=> 'cart.myCart'
 ]);
 
+Route::get('/cart/remove/{id}', [
+	'uses'	=> 'CartController@removeCart',
+	'as'	=> 'cart.remove'
+]);
+
+Route::get('/cart/removeItem/{id}', [
+	'uses'	=> 'CartController@removeItem',
+	'as'	=> 'cart.removeItem'
+]);
+
 Route::get('/checkout', [
 	'uses' 	=> 'CheckoutController@getCheckout',
 	'as'	=> 'checkout.index'
@@ -41,7 +50,6 @@ Route::post('/checkout/validation', [
 	'as'	=> 'checkout.validation'
 ])->middleware('auth');
 
-
 Route::group([
 	'prefix' 	 => 'admin',
 	'middleware' => ['auth'],
@@ -50,3 +58,5 @@ Route::group([
 });
 
 Route::get('/categorias/{id}/{name}', 'ProductController@categoryFilter');
+
+Route::get('/pesquisa', 'ProductController@search');

@@ -24,7 +24,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $user = Auth::user();
 
@@ -35,6 +35,7 @@ class HomeController extends Controller
             'cpf'           => $user->cpf,
             'nascimento'    => $user->data_nascimento,
             'sexo'          => $user->sexo,
+            'image'         => $user->image,
             'telephones'    => Telephone::where('user_id', $user->id)->get(),
             'address'       => Address::find($user->id)
         ];
@@ -44,7 +45,7 @@ class HomeController extends Controller
         ]);
     }
 
-    public function showUpdate(){
+    public function showUpdate(Request $request){
         $user = Auth::user();
 
         $userInfo = [
@@ -54,13 +55,15 @@ class HomeController extends Controller
             'cpf'           => $user->cpf,
             'nascimento'    => $user->data_nascimento,
             'sexo'          => $user->sexo,
+            'image'         => $user->image,
             'telephones'    => Telephone::where('user_id', $user->id)->get(),
             'address'       => Address::find($user->id)
         ];
+        // dd($request->session()->get('warning'));
 
         return view('perfilUpdate', [
             'userInfo' => $userInfo
-        ]);
+        ])->with('warning', $request->session()->get('warning'));
     }
 
     public function updateSave(Request $request){
@@ -70,23 +73,38 @@ class HomeController extends Controller
         $user->data_nascimento = $request["nascimento"];
         $user->sexo            = $request["sexo"];
 
+
+        if ($request["imageUp"]) {
+            $image = $request->file("imageUp");
+            $imageName = $user->id . '-' . round(microtime(true)) . '-Perfil.' . $image->getClientOriginalExtension();
+            $image->storeAs('user', $imageName);
+            $user->image = $imageName;
+        }
+
         $telephone = Telephone::where('user_id', $user->id)->first();
         $telephone->ddd       = $request["ddd"];
         $telephone->telephone = $request["telephone"];
         
-        $address = Address::where('user_id', $user->id)->first() ?? new Address;
-        $address->user_id     = $user->id;
-        $address->endereco    = $request["address"];
-        $address->cep         = $request["cep"];
-        $address->numero      = $request["numero"];
-        $address->bairro      = $request["bairro"];
-        $address->cidade      = $request["cidade"];
-        $address->estado      = $request["estado"];
-        $address->complemento = $request["complemento"];
+        if ($request["address"] && $request["cep"]) {
+            $address = Address::where('user_id', $user->id)->first() ?? new Address;
+            $address->user_id     = $user->id;
+            $address->endereco    = $request["address"];
+            $address->cep         = $request["cep"];
+            $address->numero      = $request["numero"];
+            $address->bairro      = $request["bairro"];
+            $address->cidade      = $request["cidade"];
+            $address->estado      = $request["estado"];
+            $address->complemento = $request["complemento"];
+
+            $address->save();
+        }
 
         $user->save();
         $telephone->save();
-        $address->save();
+
+        if ($request->get('r') === 'checkout') {
+            return redirect()->route('checkout.index');
+        }
 
         return redirect()->route('perfil');
     }

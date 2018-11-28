@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+	@if (!empty($success))
+	<div class="alert alert-success text-center my-0">
+		{{ $success }}
+	</div>
+	@endif
 	<div class="header-product">
 		<div class="header-background">
 			<div class="header-description">
@@ -25,7 +30,7 @@
 						<div class="card-body">
 							<a class="link-no-style" href="/product/{{ $product->id }}">
 								<h2 class="card-title-product">{{ $product->name }}</h2>
-								<p class="card-text">R$ {{ $product->price }}</p>
+								<p class="card-text">R$ {{ number_format($product->price, 2) }}</p>
 							</a>
 							<div class="button-group">
 								<a href="{{ route('cart.add', ['id' => $product->id]) }}" class="btn btn-success d-block rounded-0 my-1">+ Carrinho</a>

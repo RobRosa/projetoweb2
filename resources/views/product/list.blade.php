@@ -3,7 +3,7 @@
 @section('content')
 	<div class="container">
 		<div class="section-product border ronded px-3 pb-3">
-			<h2 class="text-center py-3">Categoria: {{ $category }} </h2>
+			<h2 class="text-center py-3">{{ !empty($category) ? 'Categoria: ' . $category : 'Pesquisa: ' . $query }} </h2>
 			<div class="row">
 				@foreach ($products as $product)
 				<div class="col-lg-3 col-md-6 mb-2">
@@ -14,18 +14,18 @@
 						<div class="card-body">
 							<a class="link-no-style" href="/product/{{ $product->id }}">
 								<h2 class="card-title-product">{{ $product->name }}</h2>
-								<p class="card-text">R$ {{ $product->price }}</p>
+								<p class="card-text">R$ {{ number_format($product->price, 2) }}</p>
 							</a>
 							<div class="button-group">
 								<a href="{{ route('cart.add', ['id' => $product->id]) }}" class="btn btn-success d-block rounded-0 my-1">+ Carrinho</a>
 								<a href="/product/{{ $product->id }}" class="btn btn-primary d-block rounded-0 my-1">Detalhes</a>
 							</div>
 						</div>
-					</div>				
+					</div>
 				</div>
 				@endforeach
 			</div>
 		</div>
-		{!! $products->links() !!}
+		{!! $products !!}
 	</div>
 @endsection

@@ -9,6 +9,9 @@
                 	<h1>{{ __('Checkout') }}</h1>
 					<p>Total: <strong>{{ $total }}</strong></p>
                 </div>
+                @if (!empty($warning))
+                    <div class="alert alert-danger text-center"> {{ $warning }} <b><a href="{{ route('atualizarPerfil') }}">Atualizar Dados</a></b></div>
+                @endif
                 <div class="card-body">
                     <form method="POST" action="{{ route('checkout.validation') }}">
                         @csrf
@@ -41,7 +44,7 @@
                             <label for="date" class="col-md-4 col-form-label text-md-right">{{ __('Expiration date') }}</label>
 
                             <div class="col-md-6">
-                                <input id="date" type="text" class="form-control{{ $errors->has('expiration') ? ' is-invalid' : '' }}" name="expiration" required>
+                                <input id="date" type="date" class="form-control{{ $errors->has('expiration') ? ' is-invalid' : '' }}" name="expiration" required>
                             </div>
                         </div>
 
