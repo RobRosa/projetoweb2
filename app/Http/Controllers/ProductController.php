@@ -160,10 +160,10 @@ class ProductController extends Controller
     }
 
     public function search(Request $request){
-        $category = $query = $request->query('query');
+        $query = $request->query('query');
 
-        $products = Product::where('name', 'LIKE', '%'.$query.'%')->paginate(12);        
+        $products = Product::where('name', 'LIKE', '%'.$query.'%')->paginate(12)->withPath('/pesquisa?query='.$query);
 
-        return view('product.list', compact('products', 'category'))->with('i', (request()->input('page', 1) -1) *8);
+        return view('product.list', compact('products', 'query'))->with('i', (request()->input('page', 1) -1) *8);
     }
 }

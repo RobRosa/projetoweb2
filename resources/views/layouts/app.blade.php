@@ -25,24 +25,24 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
-                <div class="row w-100">
-                    <div class="col-md-2">
-                        <a class="navbar-brand" href="{{ url('/') }}">
+                <div class="row w-100 no-gutters">
+                    <div class="col-md-2 text-center text-md-left">
+                        <a class="navbar-brand m-0" href="{{ url('/') }}">
                             {{ config('app.name', 'Loja') }}
                         </a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
                     </div>
 
-                    <div class="col-md-5">
+                    <div class="col-lg-5 col-sm-10">
                         <!-- Left Side Of Navbar -->
-                        <form class="form-inline justify-content-end" method="get" action="/pesquisa">
+                        <form class="form-inline justify-content-center justify-content-md-end my-1" method="get" action="/pesquisa">
                             <input style="width: 60%;" class="form-control mr-sm-2" type="pesquisa" placeholder="Pesquisar" aria-label="Search" name="query">
                             <button class="btn btn-primary my-2 my-sm-0">Pesquisar</button>
                         </form>
                     </div>
-                    <div class="col-md-5 text-right">
+                    <div class="col-lg-5 text-right">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <!-- Right Side Of Navbar -->
                             <ul class="navbar-nav ml-auto">

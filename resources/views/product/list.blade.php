@@ -3,7 +3,7 @@
 @section('content')
 	<div class="container">
 		<div class="section-product border ronded px-3 pb-3">
-			<h2 class="text-center py-3">Categoria: {{ $category }} </h2>
+			<h2 class="text-center py-3">{{ !empty($category) ? 'Categoria: ' . $category : 'Pesquisa: ' . $query }} </h2>
 			<div class="row">
 				@foreach ($products as $product)
 				<div class="col-lg-3 col-md-6 mb-2">
