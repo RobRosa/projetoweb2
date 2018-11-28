@@ -53,7 +53,7 @@
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('cart.myCart') }}" class="nav-link">
-                                <i class="fas fa-shopping-cart text-secondary"></i>Meu Carrinho <span class="badge badge-primary">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }}</span>
+                                <i class="fas fa-shopping-cart text-secondary"></i> Meu Carrinho <span class="badge badge-primary">{{ Session::has('cart') ? Session::get('cart')->totalQty : '' }}</span>
                             </a>
                         </li>
                         <!-- Authentication Links -->
@@ -69,8 +69,9 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    <img src="{{ asset('storage/user/' . Auth::user()->image) }}" style="max-width: 25px; display: inline;" >
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    <img class="rounded-circle" src="{{ asset('storage/user/' . Auth::user()->image) }}" style="max-width: 25px; display: inline;" > 
+                                    {{ Auth::user()->name }} 
+                                    <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

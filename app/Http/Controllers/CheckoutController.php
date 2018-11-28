@@ -13,14 +13,20 @@ use Session;
 
 class CheckoutController extends Controller
 {
-    public function getCheckout() {
+    public function getCheckout(Request $request) {
     	if (!Session::has('cart')) {
     		return view('cart.myCart');
     	}
     	$oldCart = Session::get('cart');
     	$cart = new Cart($oldCart);
     	$total = $cart->totalPrice;
-    	return view('checkout.index', ['total' => $total]);
+
+        if (!Address::find(Auth::user()->id)) {
+            $request->session()->flash('warning', 'Você precisa preencher um Endereço para entrega para continuar suas compras.');
+     	    return view('checkout.index', ['total' => $total])->with('warning', $request->session()->get('warning'));
+        }
+
+        return view('checkout.index', ['total' => $total]);
     }
 
     public function validationCheckout(Request $request) {

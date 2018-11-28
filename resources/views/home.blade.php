@@ -5,7 +5,7 @@
 <div class="container bg-white py-5">
     <div class="row">
         <div class="col-md-3 my-5 bg-white py-3 border">
-            <img src="{{ $userInfo['image'] ? asset('storage/user/' . $userInfo['image']) : '' }}">
+            <img src="{{ $userInfo['image'] ? asset('storage/user/' . $userInfo['image']) : '' }}" class="rounded-circle">
         </div>
         <div class="col-md-9 my-5 bg-white py-3 border">
             <table class="table table-bordered">

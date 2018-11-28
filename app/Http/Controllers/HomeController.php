@@ -102,6 +102,10 @@ class HomeController extends Controller
         $user->save();
         $telephone->save();
 
+        if ($request->get('r') === 'checkout') {
+            return redirect()->route('checkout.index');
+        }
+
         return redirect()->route('perfil');
     }
 }

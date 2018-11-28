@@ -5,11 +5,11 @@
     <div class="alert alert-danger text-center"> {{ $warning }} </div>
 @endif
 <div class="container bg-white py-5">
-    <form method="post" action="{{ route('salvaAtualizacao') }}" enctype="multipart/form-data">
+    <form method="post" action="{{ !empty($warning) ? route('salvaAtualizacao') . '?r=checkout' : route('salvaAtualizacao') }}" enctype="multipart/form-data">
         <div class="row">
             @csrf
             <div class="col-md-4">
-                <img src="{{ $userInfo['image'] ? asset('storage/user/' . $userInfo['image']) : '' }}">
+                <img src="{{ $userInfo['image'] ? asset('storage/user/' . $userInfo['image']) : '' }}" class="rounded-circle">
                 <label>
                     Alterar a foto
                     <input type="file" name="imageUp">

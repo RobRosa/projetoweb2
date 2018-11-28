@@ -9,6 +9,9 @@
                 	<h1>{{ __('Checkout') }}</h1>
 					<p>Total: <strong>{{ $total }}</strong></p>
                 </div>
+                @if (!empty($warning))
+                    <div class="alert alert-danger text-center"> {{ $warning }} <b><a href="{{ route('atualizarPerfil') }}">Atualizar Dados</a></b></div>
+                @endif
                 <div class="card-body">
                     <form method="POST" action="{{ route('checkout.validation') }}">
                         @csrf
