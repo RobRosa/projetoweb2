@@ -14,7 +14,7 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $categories = Category::all();
         $categoryProducts = [];
@@ -30,7 +30,7 @@ class ProductController extends Controller
             ];
         }
 
-        return view('product.index', compact('categoryProducts'));
+        return view('product.index', compact('categoryProducts'))->with('success', $request->session()->get('success'));
     }
 
     /**

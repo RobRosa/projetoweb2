@@ -32,13 +32,13 @@
 								</p>
 							</div>
 							<div class="col-md-1 align-content-sm-center text-center">
-								<a class="d-block my-2" href="{{ route('cart.add', $key) }}" title="Adicionar mais um item">
+								<a class="d-block my-2" href="{{ route('cart.add', $product['item']->id) }}" title="Adicionar mais um item">+1
 									<i class="fas fa-plus text-primary"></i>
 								</a>
-								<a class="d-block my-2" href="{{ route('cart.remove', $key) }}" title="Remover um item">
+								<a class="d-block my-2" href="{{ route('cart.remove', $product['item']->id) }}" title="Remover um item">-1
 									<i class="fas fa-minus text-danger"></i>
 								</a>
-								<a class="d-block my-2" href="{{ route('cart.removeItem', $key) }}" title="Remover do carrinho">
+								<a class="d-block my-2" href="{{ route('cart.removeItem', $product['item']->id) }}" title="Remover do carrinho">Excluir
 									<i class="far fa-trash-alt text-danger"></i>
 								</a>
 							</div>

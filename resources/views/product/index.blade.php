@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+	@if (!empty($success))
+	<div class="alert alert-success text-center my-0">
+		{{ $success }}
+	</div>
+	@endif
 	<div class="header-product">
 		<div class="header-background">
 			<div class="header-description">

@@ -40,6 +40,7 @@ class CartController extends Controller
 
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
+
         return view('cart.myCart', ['products' => $cart->items, 'totalPrice' => $cart->totalPrice]);
     }
 

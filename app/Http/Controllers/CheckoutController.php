@@ -61,6 +61,7 @@ class CheckoutController extends Controller
         }
 
         Session::forget('cart');
+        $request->session()->flash('success', 'Compra realizada com sucesso!');
     	return redirect()->route('product.index');
     }
 }
