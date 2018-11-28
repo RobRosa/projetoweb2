@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => projetoWeb2\User::class,
+            'model' => projetoweb2\User::class,
         ],
 
         // 'users' => [

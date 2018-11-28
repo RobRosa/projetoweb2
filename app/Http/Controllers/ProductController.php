@@ -1,9 +1,12 @@
 <?php
 
-namespace projetoWeb2\Http\Controllers;
+namespace projetoweb2\Http\Controllers;
 
 use Illuminate\Http\Request;
-use projetoWeb2\Product;
+use projetoweb2\Product;
+use projetoweb2\Category;
+use projetoweb2\Helpers\StringHelper;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -12,10 +15,23 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::latest()->paginate(5);
-        return view('product.index', compact('products'))->with('i', (request()->input('page',1) -1)*5);
+        $categories = Category::all();
+        $categoryProducts = [];
+
+        foreach ($categories as $category) {
+            $categoryProducts[] = [
+                'category' => [
+                    'id'   => $category->id,
+                    'name' => $category->name,
+                    'link' => strtolower(StringHelper::removeAcentos($category->name))
+                ],
+                'products' => Product::where('category', $category->name)->limit(4)->get()
+            ];
+        }
+
+        return view('product.index', compact('categoryProducts'))->with('success', $request->session()->get('success'));
     }
 
     /**
@@ -25,7 +41,12 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('product.create');
+        // dd(Auth::user());
+        if (!empty(Auth::user()) && Auth::user()->admin === 1) {
+            return view('product.create');
+        } else {
+            return redirect('/');
+        }
     }
 
     /**
@@ -37,15 +58,37 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=>'required',
-            'description'=>'required',
-            'brand'=>'required',
-            'color'=>'required',
-            'price'=>'required',
-            'amount'=>'required'
+            'name'        => 'required|string|max:30',
+            'description' => 'required|string|max:255',
+            'brand'       => 'required|string|max:30',
+            'color'       => 'required|string|max:15',
+            'price'       => 'required|numeric',
+            'amount'      => 'required|numeric',
+            'category'    => 'required|string'
         ]);
 
-        Product::create($request->all());
+        $product = [
+            'name'        => $request->name,
+            'description' => $request->description,
+            'brand'       => $request->brand,
+            'color'       => $request->color,
+            'price'       => $request->price,
+            'amount'      => $request->amount,
+            'category'    => $request->category
+        ];
+
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $imageName = \Auth::user()->id . '_' . round(microtime(true)) . '_' . kebab_case($request->file('image')->getClientOriginalName());
+
+            $upload = $request->file('image')->storeAs('products', $imageName);
+
+            $product['image_name'] = $imageName;
+            if (!$upload) {
+                $product['image_name'] = null;
+            }
+        }
+
+        Product::create($product);
         return redirect()->route('product.index')->with('success', 'criou');
     }
 
@@ -83,12 +126,12 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name'=>'required',
-            'description'=>'required',
-            'brand'=>'required',
-            'color'=>'required',
-            'price'=>'required',
-            'amount'=>'required'
+            'name'          => 'required|string|max:30',
+            'description'   => 'required|string|max:255',
+            'brand'         => 'required|string|max:30',
+            'color'         => 'required|string|max:15',
+            'price'         => 'required|numeric',
+            'amount'        => 'required|numeric'
         ]);
 
         $product = Product::find($id);
@@ -113,5 +156,20 @@ class ProductController extends Controller
         $product = Product::find($id);
         $product->delete();
         return redirect()->route('product.index')->with('success', 'deletou');
+    }
+
+    public function categoryFilter($catId, $catName){
+        $category = Category::where('id', $catId)->first()->name;
+        $products = Product::where('category', $category)->paginate(12);
+
+        return view('product.list', compact('products', 'category'))->with('i', (request()->input('page',1) -1)*8);
+    }
+
+    public function search(Request $request){
+        $query = $request->query('query');
+
+        $products = Product::where('name', 'LIKE', '%'.$query.'%')->paginate(12)->withPath('/pesquisa?query='.$query);
+
+        return view('product.list', compact('products', 'query'))->with('i', (request()->input('page', 1) -1) *8);
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace projetoWeb2;
+namespace projetoweb2;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -10,13 +10,15 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    public $timestamp = true;
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'cpf', 'data_nascimento', 'sexo'
+        'name', 'email', 'password', 'cpf', 'data_nascimento', 'sexo', 'image'
     ];
 
     /**
@@ -27,4 +29,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function telephone(){
+        return $this->hasMany('projetoWeb2\Telephone');
+    }
+
+    public function address(){
+        return $this->has('projetoWeb2\Address');
+    }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace projetoWeb2\Providers;
+namespace projetoweb2\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;

@@ -1,13 +1,13 @@
 <?php
 
-namespace projetoWeb2\Http\Controllers\Auth;
+namespace projetoweb2\Http\Controllers\Auth;
 
-use projetoWeb2\User;
-use projetoWeb2\Http\Controllers\Controller;
+use projetoweb2\User;
+use projetoweb2\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Illuminate\Support\Facades\DB;
+use projetoWeb2\Telephone;
 
 class RegisterController extends Controller
 {
@@ -29,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/perfil';
 
     /**
      * Create a new controller instance.
@@ -65,25 +65,27 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \projetoWeb2\User
+     * @return \projetoweb2\User
      */
     protected function create(array $data)
     {
+
         $user = User::create([
             'name'              => $data['name'],
             'email'             => $data['email'],
             'cpf'               => $data['cpf'],
             'data_nascimento'   => $data['data_nascimento'],
             'password'          => Hash::make($data['password']),
-            'sexo'              => $data['sexo']
+            'sexo'              => $data['sexo'],
+        ]);
+        
+        $telephone = new Telephone([
+            'ddi'       => $data['ddi'] ?? '55',
+            'ddd'       => $data['ddd'],
+            'telephone' => $data['telephone']
         ]);
 
-        // Modificar futuramente! Não acho que essa parte deveria ser feita aqui, mas por hora vai.
-        DB::table('telephones')->insert([
-            'ddd'       => $data['ddd'],
-            'telephone' => $data['telephone'],
-            'user_id'   => $user->id
-        ]);
+        $user->telephone()->save($telephone);
 
         return $user;
     }

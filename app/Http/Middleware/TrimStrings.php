@@ -1,6 +1,6 @@
 <?php
 
-namespace projetoWeb2\Http\Middleware;
+namespace projetoweb2\Http\Middleware;
 
 use Illuminate\Foundation\Http\Middleware\TrimStrings as Middleware;
 

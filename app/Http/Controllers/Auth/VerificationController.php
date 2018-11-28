@@ -1,6 +1,6 @@
 <?php
 
-namespace projetoWeb2\Http\Controllers\Auth;
+namespace projetoweb2\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -26,7 +26,7 @@ class VerificationController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/perfil';
 
     /**
      * Create a new controller instance.

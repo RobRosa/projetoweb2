@@ -1,0 +1,59 @@
+.header-product {
+	background-image: url('https://images.pexels.com/photos/262100/pexels-photo-262100.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 400px;
+	width: 100%;
+	position: relative;
+}
+.header-product .header-background {
+	background-color: rgba(31,31,31,.5);
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+}
+.header-product .header-background .header-description {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	text-align: center;
+	color: #fff;
+}
+
+.section-product {
+	margin: 50px 0;
+	background-color: #fff;
+}
+.section-product .card {
+	height: 100%;
+}
+.section-product .card .card-img-top{
+	height: 175px;
+	object-position: center;
+	object-fit: contain;
+}
+.section-product .card .card-body {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	color: #555;
+}
+
+.section-product .card .card-title-product {
+	font-size: 1.2rem;
+	height: 2.4em;
+	overflow: hidden;
+	margin: .6rem 0;
+}
+
+.section-product .card .card-text{
+	font-size: 1.4rem;
+	font-weight: bold;
+	text-align: center;
+	margin: .4rem 0;
+}

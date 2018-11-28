@@ -1,10 +1,20 @@
 <?php
 
-namespace projetoWeb2;
+namespace projetoweb2;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $fillable = ['name','description','brand','color','price','amount'];
+	public $timestamp = true;
+    protected $fillable = [
+    	'name',
+    	'description',
+    	'brand',
+    	'color',
+    	'price',
+    	'amount',
+    	'image_name',
+    	'category'
+    ];
 }
