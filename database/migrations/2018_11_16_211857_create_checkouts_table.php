@@ -17,7 +17,7 @@ class CreateCheckoutsTable extends Migration
             $table->increments('id');
             $table->string('name', 30)->nullable(false);
             $table->bigInteger('card')->nullable(false);
-            $table->char('expiration', 5)->nullable(false);
+            $table->date('expiration')->nullable(false);
             $table->timestamps();
         });
     }

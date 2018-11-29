@@ -27,7 +27,7 @@
 					</p>
 				</div>
 				<div style="font-size: 1.6rem; font-weight: bold;">
-					R$ {{ $product->price }}
+					R$ {{ number_format($product->price, 2) }}
 				</div>
 				<div>
 					<a href="{{ route('cart.add', ['id' => $product->id, 'goToCart' => true]) }}" class="btn btn-success btn-lg rounded-0 my-1">Comprar</a>

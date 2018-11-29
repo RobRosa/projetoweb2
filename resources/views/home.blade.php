@@ -2,13 +2,13 @@
 
 @section('content')
 
-<div class="container">
+<div class="container bg-white py-5">
     <div class="row">
-        <div class="col-md-3">
-            <div style="width: 100%; height: 250px; background: #ddd;">Foto de Perfil</div>
+        <div class="col-md-3 my-5 bg-white py-3 border">
+            <img style="max-width: 100%;" src="{{ $userInfo['image'] ? asset('storage/user/' . $userInfo['image']) : '' }}" class="rounded-circle">
         </div>
-        <div class="col-md-9">
-            <table class="table table-bordered" style="width:auto;">
+        <div class="col-md-9 my-5 bg-white py-3 border">
+            <table class="table table-bordered">
                 <tr>
                     <td><b>Nome: </b></td>
                     <td>{{ $userInfo['name'] }}</td>

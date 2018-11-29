@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use projetoweb2\Product;
 use projetoweb2\Category;
 use projetoweb2\Helpers\StringHelper;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -14,7 +15,7 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $categories = Category::all();
         $categoryProducts = [];
@@ -30,7 +31,7 @@ class ProductController extends Controller
             ];
         }
 
-        return view('product.index', compact('categoryProducts'));
+        return view('product.index', compact('categoryProducts'))->with('success', $request->session()->get('success'));
     }
 
     /**
@@ -40,7 +41,12 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('product.create');
+        // dd(Auth::user());
+        if (!empty(Auth::user()) && Auth::user()->admin === 1) {
+            return view('product.create');
+        } else {
+            return redirect('/');
+        }
     }
 
     /**
@@ -157,5 +163,13 @@ class ProductController extends Controller
         $products = Product::where('category', $category)->paginate(12);
 
         return view('product.list', compact('products', 'category'))->with('i', (request()->input('page',1) -1)*8);
+    }
+
+    public function search(Request $request){
+        $query = $request->query('query');
+
+        $products = Product::where('name', 'LIKE', '%'.$query.'%')->paginate(12)->withPath('/pesquisa?query='.$query);
+
+        return view('product.list', compact('products', 'query'))->with('i', (request()->input('page', 1) -1) *8);
     }
 }
