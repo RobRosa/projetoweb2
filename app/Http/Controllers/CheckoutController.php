@@ -17,11 +17,12 @@ class CheckoutController extends Controller
     	if (!Session::has('cart')) {
     		return view('cart.myCart');
     	}
+
     	$oldCart = Session::get('cart');
     	$cart = new Cart($oldCart);
     	$total = $cart->totalPrice;
 
-        if (!Address::find(Auth::user()->id)) {
+        if (!Address::where('user_id', Auth::user()->id)) {
             $request->session()->flash('warning', 'Você precisa preencher um Endereço para entrega para continuar suas compras.');
      	    return view('checkout.index', ['total' => $total])->with('warning', $request->session()->get('warning'));
         }
@@ -30,7 +31,7 @@ class CheckoutController extends Controller
     }
 
     public function validationCheckout(Request $request) {
-        if (!Address::find(Auth::user()->id)) {
+        if (!Address::where('user_id', Auth::user()->id)) {
             $request->session()->flash('warning', 'Você precisa preencher um Endereço para entrega para continuar suas compras.');
             return redirect('perfil/atualizar');
         }
