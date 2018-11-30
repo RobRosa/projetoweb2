@@ -41,7 +41,6 @@ class ProductController extends Controller
      */
     public function create()
     {
-        // dd(Auth::user());
         if (!empty(Auth::user()) && Auth::user()->admin === 1) {
             return view('product.create');
         } else {

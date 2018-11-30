@@ -59,7 +59,6 @@ class HomeController extends Controller
             'telephones'    => Telephone::where('user_id', $user->id)->get(),
             'address'       => Address::find($user->id)
         ];
-        // dd($request->session()->get('warning'));
 
         return view('perfilUpdate', [
             'userInfo' => $userInfo
